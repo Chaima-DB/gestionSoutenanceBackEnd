@@ -19,6 +19,9 @@ public interface DoctorantService {
     int deleteByCin(String cin);
 
     Doctorant findByCin(String cin);
+
     Doctorant findByCne(String cne);
+    
+    int save(Doctorant doctorant);
 
 }

@@ -39,6 +39,8 @@ public class EtablissementServiceImpl implements EtablissementService{
         Etablissement founded = findByReference(etablissement.getReference());
         if (founded != null){
             return -1;
+        }else if(etablissement.getReference()== null || "".equals(etablissement.getReference()) ) {
+            return -2;
         }else{
             etablissementDao.save(etablissement);
         return 1;

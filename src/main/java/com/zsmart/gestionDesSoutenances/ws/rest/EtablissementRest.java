@@ -16,9 +16,10 @@ import com.zsmart.gestionDesSoutenances.bean.Etablissement;
 import com.zsmart.gestionDesSoutenances.service.facade.EtablissementService;
 
 import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.CrossOrigin;
 @Api
 @RestController
-//@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("api/v1/gestionDesSoutenances-api/etablissement")
 public class EtablissementRest {
 
@@ -26,7 +27,7 @@ public class EtablissementRest {
         EtablissementService etablissementService;
 
         @GetMapping("/")
-    public List<Etablissement> findAll() {
+    public List<Etablissement> findAll( ) {
         return etablissementService.findAll();
     }
         @GetMapping("/reference/{reference}")

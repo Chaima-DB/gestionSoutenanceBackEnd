@@ -7,6 +7,9 @@ package com.zsmart.gestionDesSoutenances.dao;
 
 
 import com.zsmart.gestionDesSoutenances.bean.Etablissement;
+import java.util.List;
+
+import net.bytebuddy.TypeCache.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

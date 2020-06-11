@@ -10,7 +10,6 @@ import com.zsmart.gestionDesSoutenances.bean.Sujet;
 import com.zsmart.gestionDesSoutenances.dao.SujetDao;
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +35,7 @@ public class SujetServiceImpl implements SujetService{
 
     @Override
     public int save(Sujet sujet) {
+        sujet.setReference("s"+sujet.getId());
        sujetDao.save(sujet);
         return 1;
     }
