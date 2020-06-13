@@ -9,6 +9,7 @@ package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 import com.zsmart.gestionDesSoutenances.bean.Sujet;
 import com.zsmart.gestionDesSoutenances.dao.SujetDao;
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,11 @@ public class SujetServiceImpl implements SujetService{
 
     @Override
     public int save(Sujet sujet) {
-        sujet.setReference("s"+sujet.getId());
+        double i = Math.random();
+        double j = Math.random();
+        sujet.setReference("s"+i+j);
        sujetDao.save(sujet);
+       
         return 1;
     }
    

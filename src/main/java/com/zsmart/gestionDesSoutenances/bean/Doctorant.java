@@ -30,6 +30,7 @@ public class Doctorant extends Personnel {
     @Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateInscription;
+    private String password;
 
     @OneToOne
     private Sujet sujet;
@@ -91,6 +92,14 @@ public class Doctorant extends Personnel {
 
     public void setDirecteurThese(DirecteurThese directeurThese) {
         this.directeurThese = directeurThese;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 

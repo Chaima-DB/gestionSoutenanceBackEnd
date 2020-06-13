@@ -7,12 +7,16 @@ package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
+import com.zsmart.gestionDesSoutenances.bean.Specialite;
+import com.zsmart.gestionDesSoutenances.bean.StructureDeRecherche;
 import com.zsmart.gestionDesSoutenances.dao.DoctorantDao;
 import com.zsmart.gestionDesSoutenances.service.facade.DirecteurTheseService;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
+import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import com.zsmart.gestionDesSoutenances.service.facade.StructureDeRechercheService;
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +35,17 @@ public class DoctorantServiceImpl implements DoctorantService{
     SujetService sujetService;
     @Autowired
     StructureDeRechercheService structureDeRechercheService;
+    @Autowired
+    SpecialiteService specialiteService;
+    
+    
 
     @Override
     public List<Doctorant> findAll() {
         return doctorantDao.findAll();
     }
 
+    @Transactional
     @Override
     public int deleteByCin(String cin) {
         return doctorantDao.deleteByCin(cin);
@@ -55,11 +64,15 @@ public class DoctorantServiceImpl implements DoctorantService{
     @Override
     public int save(Doctorant doctorant) {
         Doctorant founded = doctorantDao.findByCin(doctorant.getCin());
+        Specialite specialite = specialiteService.findByReference(doctorant.getSpecialite().getReference());
+        StructureDeRecherche structure = structureDeRechercheService.findByReference(doctorant.getStructureDeRecherche().getReference());
         if(founded!= null){
         return -1;
         }else{
-        doctorant.setStructureDeRecherche(doctorant.getStructureDeRecherche());
         sujetService.save(doctorant.getSujet());
+        doctorant.setSpecialite(specialite);
+        doctorant.setStructureDeRecherche(structure);
+        doctorantDao.save(doctorant);
         return 1;
         }
     }
