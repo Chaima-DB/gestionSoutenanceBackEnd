@@ -16,8 +16,11 @@ import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import com.zsmart.gestionDesSoutenances.service.facade.StructureDeRechercheService;
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
 import java.util.List;
+import java.util.Optional;
+import javax.persistence.RollbackException;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -74,6 +77,22 @@ public class DoctorantServiceImpl implements DoctorantService{
         doctorant.setStructureDeRecherche(structure);
         doctorantDao.save(doctorant);
         return 1;
+        }
+    }
+
+    @Override
+    public int update(Doctorant doctorant,Long id) {
+        Optional<Doctorant> founded = doctorantDao.findById(id);
+        if(founded != null){
+        founded.get().setCNE(doctorant.getCne());
+        founded.get().setCin(doctorant.getCin());
+        founded.get().setDateInscription(doctorant.getDateInscription());
+       
+        
+        doctorantDao.save((founded.get()));
+        return 1;
+        }else{
+        return -1;
         }
     }
 

@@ -17,6 +17,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.EtablissementService;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PutMapping;
 @Api
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -41,6 +42,10 @@ public class EtablissementRest {
         @PostMapping("/")
     public int save(@RequestBody Etablissement etablissement) {
         return etablissementService.save(etablissement);
+    }
+    @PutMapping("/")
+    public Etablissement update(Etablissement etablissement) {
+        return etablissementService.update(etablissement);
     }
         
 

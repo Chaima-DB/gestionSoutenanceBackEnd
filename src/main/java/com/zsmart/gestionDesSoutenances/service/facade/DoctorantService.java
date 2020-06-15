@@ -7,6 +7,7 @@ package com.zsmart.gestionDesSoutenances.service.facade;
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -23,5 +24,7 @@ public interface DoctorantService {
     Doctorant findByCne(String cne);
     
     int save(Doctorant doctorant);
+    
+    int update(Doctorant doctorant, Long id);
 
 }

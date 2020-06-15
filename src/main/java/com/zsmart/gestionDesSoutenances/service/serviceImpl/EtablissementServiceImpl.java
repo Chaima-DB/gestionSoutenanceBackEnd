@@ -60,6 +60,12 @@ public class EtablissementServiceImpl implements EtablissementService{
     public Etablissement findByReference(String reference) {
         return etablissementDao.findByReference(reference);
     }
+
+    @Override
+    public Etablissement update(Etablissement etablissement) {
+        return etablissementDao.save(etablissement);
+        
+    }
     
     
     

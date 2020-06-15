@@ -21,14 +21,14 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Doctorant extends Personnel {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String cne;
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private Date dateInscription;
     private String password;
 
@@ -43,7 +43,7 @@ public class Doctorant extends Personnel {
   
 
     public Doctorant() {
-    	//super()
+    
     }
 
     public Long getId() {

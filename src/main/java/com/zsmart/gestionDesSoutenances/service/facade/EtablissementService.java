@@ -19,4 +19,5 @@ public interface EtablissementService {
     int deleteByReference(String reference);
    Etablissement findByReference(String reference);
     int save(Etablissement etablissement);
+    Etablissement update(Etablissement etablissement);
 }

@@ -17,7 +17,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Sujet implements Serializable {
-
+        
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +29,7 @@ public class Sujet implements Serializable {
 		super();
 		this.reference = reference;
 		this.libelle = libelle;
+               
 	}
 
 
@@ -60,4 +61,5 @@ public class Sujet implements Serializable {
         this.libelle = libelle;
     }
 
+   
 }

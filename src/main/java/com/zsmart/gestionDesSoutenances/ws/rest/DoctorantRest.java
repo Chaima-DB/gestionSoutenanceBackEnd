@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
 
 import io.swagger.annotations.Api;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PutMapping;
 @Api
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -44,6 +46,10 @@ public class DoctorantRest {
 @PostMapping("/")
     public int save(@RequestBody Doctorant doctorant) {
         return doctorantService.save(doctorant);
+    }
+    @PutMapping("/id/{id}")
+    public int update(@RequestBody Doctorant doctorant,@PathVariable Long id) {
+        return doctorantService.update(doctorant, id);
     }
 
         
