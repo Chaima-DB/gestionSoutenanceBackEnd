@@ -52,7 +52,7 @@ public class SoutenanceRest {
 
     @PostMapping("/")
     public int save(@RequestBody Soutenance soutenance) {
-        return soutenanceService.save(soutenance, soutenance.getSoutenanceJurys());
+        return soutenanceService.save(soutenance, soutenance.getJurys());
     }
 
     

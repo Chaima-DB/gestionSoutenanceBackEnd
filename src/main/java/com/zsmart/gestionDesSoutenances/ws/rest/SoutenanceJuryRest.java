@@ -25,25 +25,25 @@ public class SoutenanceJuryRest {
 
     @Autowired
     SoutenanceJuryService soutenanceJuryService;
-
-    @PostMapping("/")
-    public int save(@RequestBody Soutenance soutenance) {
-        return soutenanceJuryService.save(soutenance, soutenance.getSoutenanceJurys());
-    }
-
-    @GetMapping("/soutenance/reference/{reference}")
-    public List<SoutenanceJury> findBySoutenanceReference(@PathVariable String reference) {
-        return soutenanceJuryService.findBySoutenanceReference(reference);
-    }
-
-    @DeleteMapping("/soutenance/reference/{reference}")
-    public int deleteBySoutenanceReference(@PathVariable String reference) {
-        return soutenanceJuryService.deleteBySoutenanceReference(reference);
-    }
-@GetMapping("/validate")
-    public boolean validateSoutenanceJury(@RequestBody Soutenance soutenance) {
-        return soutenanceJuryService.validateSoutenanceJury(soutenance, soutenance.getSoutenanceJurys());
-    }
+//
+//    @PostMapping("/")
+//    public int save(@RequestBody Soutenance soutenance) {
+//        return soutenanceJuryService.save(soutenance, soutenance.getSoutenanceJurys());
+//    }
+//
+//    @GetMapping("/soutenance/reference/{reference}")
+//    public List<SoutenanceJury> findBySoutenanceReference(@PathVariable String reference) {
+//        return soutenanceJuryService.findBySoutenanceReference(reference);
+//    }
+//
+//    @DeleteMapping("/soutenance/reference/{reference}")
+//    public int deleteBySoutenanceReference(@PathVariable String reference) {
+//        return soutenanceJuryService.deleteBySoutenanceReference(reference);
+//    }
+//@GetMapping("/validate")
+//    public boolean validateSoutenanceJury(@RequestBody Soutenance soutenance) {
+//        return soutenanceJuryService.validateSoutenanceJury(soutenance, soutenance.getSoutenanceJurys());
+//    }
 
     
 }

@@ -23,20 +23,14 @@ public class SoutenanceJury implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Soutenance soutenance;
-    @ManyToOne
-    private Jury jury;
-    private String resultat;
-    
+//    @ManyToOne
+//    private Soutenance soutenance;
+//    @ManyToOne
+//    private Jury jury;
+//    private String resultat;
+//    
   
 
-	public SoutenanceJury(Soutenance soutenance, Jury jury, String resultat) {
-		super();
-		this.soutenance = soutenance;
-		this.jury = jury;
-		this.resultat = resultat;
-	}
 
 
 	public SoutenanceJury() {
@@ -51,29 +45,5 @@ public class SoutenanceJury implements Serializable {
         this.id = id;
     }
 
-    public String getResultat() {
-        return resultat;
-    }
-
-    public void setResultat(String resultat) {
-        this.resultat = resultat;
-    }
-
-
-    public Soutenance getSoutenance() {
-        return soutenance;
-    }
-
-    public void setSoutenance(Soutenance soutenance) {
-        this.soutenance = soutenance;
-    }
-
-    public Jury getJury() {
-        return jury;
-    }
-
-    public void setJury(Jury jury) {
-        this.jury = jury;
-    }
-
+  
 }

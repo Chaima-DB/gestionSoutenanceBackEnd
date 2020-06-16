@@ -24,50 +24,50 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SoutenanceJuryServiceImpl implements SoutenanceJuryService {
-
-    @Autowired
-    SoutenanceJuryDao soutenanceJuryDao;
-
-    @Autowired
-    JuryService juryService;
-
-    @Autowired
-    SoutenanceService soutenanceService;
-
-    @Override
-    public boolean validateSoutenanceJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
-        List<SoutenanceJury> valideJurys = soutenanceJurys.stream().filter(sj -> (juryService.findByCin(sj.getJury().getCin()) != null)).collect(Collectors.toList());
-        return valideJurys.size() == soutenanceJurys.size();
-    }
-
-    /* @Override
-    public boolean validateJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
-        List<SoutenanceJury> validespecialite = soutenanceJurys.stream().filter(sj -> (sj.getJury().getSpecialite().getReference().equals(soutenance.getDoctorant().getSpecialite().getReference()))).collect(Collectors.toList());
-        return validespecialite.size() == soutenanceJurys.size();
-    }
-    */
-
-    @Override
-    public int save(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
-        soutenanceJurys.forEach(j -> {
-            j.setSoutenance(soutenance);
-            Jury jury = juryService.findByCin(j.getJury().getCin());
-            j.setJury(jury);
-            soutenanceJuryDao.save(j);
-        }
-        );
-        return 1;
-    }
-
-    @Override
-    public List<SoutenanceJury> findBySoutenanceReference(String reference) {
-        return soutenanceJuryDao.findBySoutenanceReference(reference);
-    }
-
-    @Transactional
-    @Override
-    public int deleteBySoutenanceReference(String reference) {
-        return soutenanceJuryDao.deleteBySoutenanceReference(reference);
-    }
+//
+//    @Autowired
+//    SoutenanceJuryDao soutenanceJuryDao;
+//
+//    @Autowired
+//    JuryService juryService;
+//
+//    @Autowired
+//    SoutenanceService soutenanceService;
+//
+//    @Override
+//    public boolean validateSoutenanceJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
+//        List<SoutenanceJury> valideJurys = soutenanceJurys.stream().filter(sj -> (juryService.findByCin(sj.getJury().getCin()) != null)).collect(Collectors.toList());
+//        return valideJurys.size() == soutenanceJurys.size();
+//    }
+//
+//    /* @Override
+//    public boolean validateJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
+//        List<SoutenanceJury> validespecialite = soutenanceJurys.stream().filter(sj -> (sj.getJury().getSpecialite().getReference().equals(soutenance.getDoctorant().getSpecialite().getReference()))).collect(Collectors.toList());
+//        return validespecialite.size() == soutenanceJurys.size();
+//    }
+//    */
+//
+//    @Override
+//    public int save(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
+//        soutenanceJurys.forEach(j -> {
+//            j.setSoutenance(soutenance);
+//            Jury jury = juryService.findByCin(j.getJury().getCin());
+//            j.setJury(jury);
+//            soutenanceJuryDao.save(j);
+//        }
+//        );
+//        return 1;
+//    }
+//
+//    @Override
+//    public List<SoutenanceJury> findBySoutenanceReference(String reference) {
+//        return soutenanceJuryDao.findBySoutenanceReference(reference);
+//    }
+//
+//    @Transactional
+//    @Override
+//    public int deleteBySoutenanceReference(String reference) {
+//        return soutenanceJuryDao.deleteBySoutenanceReference(reference);
+//    }
 
 }

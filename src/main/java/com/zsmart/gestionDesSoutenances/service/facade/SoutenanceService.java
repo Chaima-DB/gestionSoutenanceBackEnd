@@ -5,8 +5,8 @@
  */
 package com.zsmart.gestionDesSoutenances.service.facade;
 
+import com.zsmart.gestionDesSoutenances.bean.Jury;
 import com.zsmart.gestionDesSoutenances.bean.Soutenance;
-import com.zsmart.gestionDesSoutenances.bean.SoutenanceJury;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public interface SoutenanceService {
 
     int deleteByReference(String reference);
 
-    int save(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
+    int save(Soutenance soutenance, List<Jury> jurys);
    
 
 }

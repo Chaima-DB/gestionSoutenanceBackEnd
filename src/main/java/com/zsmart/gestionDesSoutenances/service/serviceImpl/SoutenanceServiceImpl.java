@@ -6,16 +6,13 @@
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
+import com.zsmart.gestionDesSoutenances.bean.Jury;
 import com.zsmart.gestionDesSoutenances.bean.Soutenance;
-import com.zsmart.gestionDesSoutenances.bean.SoutenanceJury;
-import com.zsmart.gestionDesSoutenances.bean.Specialite;
 import com.zsmart.gestionDesSoutenances.dao.SoutenanceDao;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
-import com.zsmart.gestionDesSoutenances.service.facade.SoutenanceJuryService;
+import com.zsmart.gestionDesSoutenances.service.facade.JuryService;
 import com.zsmart.gestionDesSoutenances.service.facade.SoutenanceService;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,7 @@ public class SoutenanceServiceImpl implements SoutenanceService {
     SoutenanceDao soutenanceDao;
 
     @Autowired
-    SoutenanceJuryService soutenanceJuryService;
+    JuryService juryService;
 
     @Autowired
     DoctorantService doctorantService;
@@ -51,29 +48,28 @@ public class SoutenanceServiceImpl implements SoutenanceService {
     @Transactional
     @Override
     public int deleteByReference(String reference) {
-        int resSoutenanceJury = soutenanceJuryService.deleteBySoutenanceReference(reference);
+        int resJury = juryService.deleteBySoutenanceReference(reference);
         int resSoutenance = soutenanceDao.deleteByReference(reference);
-        return resSoutenanceJury * resSoutenance;
+        return resJury * resSoutenance;
     }
 
     @Override
-    public int save(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys) {
+    public int save(Soutenance soutenance, List<Jury> jurys) {
         Soutenance foundedsoutenance = findByReference(soutenance.getReference());
-        Soutenance doctorantUniqueSoutenance = findByDoctorantCne(soutenance.getDoctorant().getCne());
-        Doctorant doctorant = doctorantService.findByCne(soutenance.getDoctorant().getCne());
+        Soutenance doctorantUniqueSoutenance = findByDoctorantCin(soutenance.getDoctorant().getCin());
+        Doctorant doctorant = doctorantService.findByCin(soutenance.getDoctorant().getCin());
         if (foundedsoutenance != null) {
             return -1;
         } else if (doctorant == null) {
             return -2;
         } else if (doctorantUniqueSoutenance != null) {
             return -3;
-        } else if (!soutenanceJuryService.validateSoutenanceJury(soutenance, soutenanceJurys)) {
+        } else if (!juryService.validateJury(soutenance, jurys)) {
             return -4;
         } else {
-            
             soutenance.setDoctorant(doctorant);
             soutenanceDao.save(soutenance);
-            soutenanceJuryService.save(soutenance, soutenanceJurys);
+            juryService.save(soutenance,jurys);
             return 1; 
            
         }

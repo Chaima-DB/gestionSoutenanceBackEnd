@@ -31,7 +31,6 @@ public class Soutenance implements Serializable {
     private Long id;
     private String reference;
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy@HH:mm")
     private Date dateSoutenance;
     private String resultatFinal;
 
@@ -40,17 +39,17 @@ public class Soutenance implements Serializable {
 
     @OneToMany(mappedBy = "soutenance")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<SoutenanceJury> soutenanceJurys;
+    private List<Jury> jurys;
 
     
     public Soutenance(String reference, Date dateSoutenance, String resultatFinal, Doctorant doctorant,
-			List<SoutenanceJury> soutenanceJurys) {
+			List<Jury> jurys) {
 		super();
 		this.reference = reference;
 		this.dateSoutenance = dateSoutenance;
 		this.resultatFinal = resultatFinal;
 		this.doctorant = doctorant;
-		this.soutenanceJurys = soutenanceJurys;
+		this.jurys = jurys;
 	}
 
 	public Soutenance() {
@@ -96,13 +95,14 @@ public class Soutenance implements Serializable {
         this.doctorant = doctorant;
     }
 
-    public List<SoutenanceJury> getSoutenanceJurys() {
-        return soutenanceJurys;
+    public List<Jury> getJurys() {
+        return jurys;
     }
 
-    public void setSoutenanceJurys(List<SoutenanceJury> soutenanceJurys) {
-        this.soutenanceJurys = soutenanceJurys;
+    public void setJurys(List<Jury> jurys) {
+        this.jurys = jurys;
     }
+
 
 
 }

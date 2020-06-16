@@ -6,8 +6,8 @@
 package com.zsmart.gestionDesSoutenances.dao;
 
 
-import com.zsmart.gestionDesSoutenances.bean.DirecteurThese;
 import com.zsmart.gestionDesSoutenances.bean.Jury;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface JuryDao extends JpaRepository<Jury, Long>{
-   int deleteByCin(String cin);
-   Jury findByCin(String cin);
+    List<Jury> findBySoutenanceReference(String reference);
+    int deleteBySoutenanceReference(String reference);
+  
 }

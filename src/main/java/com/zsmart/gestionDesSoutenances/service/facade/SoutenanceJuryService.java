@@ -15,14 +15,14 @@ import java.util.List;
  */
 public interface SoutenanceJuryService {
 
-    int save(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
-
-    boolean validateSoutenanceJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
-    
-    //boolean validateJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
-
-    List<SoutenanceJury> findBySoutenanceReference(String reference);
-
-    int deleteBySoutenanceReference(String reference);
+//    int save(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
+//
+//    boolean validateSoutenanceJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
+//    
+//    //boolean validateJury(Soutenance soutenance, List<SoutenanceJury> soutenanceJurys);
+//
+//    List<SoutenanceJury> findBySoutenanceReference(String reference);
+//
+//    int deleteBySoutenanceReference(String reference);
 
 }

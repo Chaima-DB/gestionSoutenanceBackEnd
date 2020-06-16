@@ -6,6 +6,7 @@
 package com.zsmart.gestionDesSoutenances.service.facade;
 
 import com.zsmart.gestionDesSoutenances.bean.Jury;
+import com.zsmart.gestionDesSoutenances.bean.Soutenance;
 import java.util.List;
 
 /**
@@ -14,11 +15,12 @@ import java.util.List;
  */
 public interface JuryService {
 
-    List<Jury> findAll();
+    int save(Soutenance soutenance, List<Jury> jurys);
 
-    int deleteByCin(String cin);
+    boolean validateJury(Soutenance soutenance, List<Jury> jurys);
 
-    Jury findByCin(String cin);
+    List<Jury> findBySoutenanceReference(String reference);
 
-    int save(Jury jury);
+    int deleteBySoutenanceReference(String reference);
+
 }

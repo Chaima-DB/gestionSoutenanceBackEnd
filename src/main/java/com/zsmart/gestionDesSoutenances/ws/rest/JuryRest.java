@@ -1,6 +1,7 @@
 package com.zsmart.gestionDesSoutenances.ws.rest;
 
 import com.zsmart.gestionDesSoutenances.bean.Jury;
+import com.zsmart.gestionDesSoutenances.bean.Soutenance;
 import com.zsmart.gestionDesSoutenances.service.facade.JuryService;
 
 import io.swagger.annotations.Api;
@@ -25,24 +26,42 @@ public class JuryRest {
     @Autowired
     JuryService juryService;
 
-    @GetMapping("/")
-    public List<Jury> findAll() {
-        return juryService.findAll();
-    }
-
-    @DeleteMapping("/cin/{cin}")
-    public int deleteByCin(@PathVariable String cin) {
-        return juryService.deleteByCin(cin);
-    }
-
-    @GetMapping("/cin/{cin}")
-    public Jury findByCin(@PathVariable String cin) {
-        return juryService.findByCin(cin);
-    }
-
+//    @GetMapping("/")
+//    public List<Jury> findAll() {
+//        return juryService.findAll();
+//    }
+//
+//    @DeleteMapping("/cin/{cin}")
+//    public int deleteByCin(@PathVariable String cin) {
+//        return juryService.deleteByCin(cin);
+//    }
+//
+//    @GetMapping("/cin/{cin}")
+//    public Jury findByCin(@PathVariable String cin) {
+//        return juryService.findByCin(cin);
+//    }
+//
+//    @PostMapping("/")
+//    public int save(@RequestBody Jury jury) {
+//        return juryService.save(jury);
+//    }
     @PostMapping("/")
-    public int save(@RequestBody Jury jury) {
-        return juryService.save(jury);
+    public int save(@RequestBody Soutenance soutenance) {
+        return juryService.save(soutenance, soutenance.getJurys());
+    }
+
+    public boolean validateJury(Soutenance soutenance, List<Jury> jurys) {
+        return juryService.validateJury(soutenance, jurys);
+    }
+
+    @GetMapping("/soutenance/reference/{reference}")
+    public List<Jury> findBySoutenanceReference(@PathVariable String reference) {
+        return juryService.findBySoutenanceReference(reference);
+    }
+
+    @DeleteMapping("/soutenance/reference/{reference}")
+    public int deleteBySoutenanceReference(@PathVariable String reference) {
+        return juryService.deleteBySoutenanceReference(reference);
     }
 
 }

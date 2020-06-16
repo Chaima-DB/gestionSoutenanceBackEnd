@@ -5,7 +5,7 @@
  */
 package com.zsmart.gestionDesSoutenances.dao;
 
-import com.zsmart.gestionDesSoutenances.bean.SoutenanceJury;
+import com.zsmart.gestionDesSoutenances.bean.Professeur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,11 +14,10 @@ import org.springframework.stereotype.Repository;
  * @author HP
  */
 @Repository
-public interface SoutenanceJuryDao extends JpaRepository<SoutenanceJury, Long> {
-//
-//    List<SoutenanceJury> findBySoutenanceReference(String reference);
-//    int deleteBySoutenanceReference(String reference);
-//    
+public interface ProfesseurDao extends JpaRepository<Professeur, Long> {
 
+    Professeur findByCin(String cin);
+
+    int deleteByCin(String cin);
 
 }
