@@ -26,25 +26,6 @@ public class JuryRest {
     @Autowired
     JuryService juryService;
 
-//    @GetMapping("/")
-//    public List<Jury> findAll() {
-//        return juryService.findAll();
-//    }
-//
-//    @DeleteMapping("/cin/{cin}")
-//    public int deleteByCin(@PathVariable String cin) {
-//        return juryService.deleteByCin(cin);
-//    }
-//
-//    @GetMapping("/cin/{cin}")
-//    public Jury findByCin(@PathVariable String cin) {
-//        return juryService.findByCin(cin);
-//    }
-//
-//    @PostMapping("/")
-//    public int save(@RequestBody Jury jury) {
-//        return juryService.save(jury);
-//    }
     @PostMapping("/")
     public int save(@RequestBody Soutenance soutenance) {
         return juryService.save(soutenance, soutenance.getJurys());
