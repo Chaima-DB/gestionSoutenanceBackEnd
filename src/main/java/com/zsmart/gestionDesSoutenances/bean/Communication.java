@@ -26,7 +26,6 @@ public class Communication extends Document{
     private String endroit;
     private String type;
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateCommunication;
     
     

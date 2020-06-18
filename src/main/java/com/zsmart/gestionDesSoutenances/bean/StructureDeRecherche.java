@@ -24,12 +24,11 @@ public class StructureDeRecherche implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reference;
-    @ManyToOne
-    private Etablissement etablissement;
     private String title;
     private String responsable;
     private String emailRespo;
-    
+    @ManyToOne
+    private Etablissement etablissement;
     
 
     public StructureDeRecherche(String reference, Etablissement etablissement, String title, String responsable,

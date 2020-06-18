@@ -22,5 +22,7 @@ public interface JuryService {
     List<Jury> findBySoutenanceReference(String reference);
 
     int deleteBySoutenanceReference(String reference);
+    
+    List<Jury> findAll();
 
 }

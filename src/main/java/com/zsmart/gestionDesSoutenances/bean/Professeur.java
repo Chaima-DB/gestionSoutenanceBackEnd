@@ -27,8 +27,7 @@ public class Professeur extends Personnel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    protected Date dateDernierePublication;
+    private Date dateDernierePublication;
 
     public Professeur() {
         //super()

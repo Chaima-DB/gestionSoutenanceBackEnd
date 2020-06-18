@@ -24,10 +24,9 @@ import javax.persistence.Temporal;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Document implements Serializable {
 
-	protected String reference;
+    protected String reference;
     protected String titre;
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     protected Date datePublicationSite;
     @Lob
     protected  byte[] pdf;

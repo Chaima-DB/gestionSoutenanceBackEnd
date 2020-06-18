@@ -64,6 +64,11 @@ public class JuryServiceImpl implements JuryService {
         return juryDao.deleteBySoutenanceReference(reference);
     }
 
+    @Override
+    public List<Jury> findAll() {
+        return juryDao.findAll();
+    }
+
    
 
 

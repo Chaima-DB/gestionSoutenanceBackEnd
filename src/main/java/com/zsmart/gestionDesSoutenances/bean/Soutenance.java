@@ -8,6 +8,7 @@ package com.zsmart.gestionDesSoutenances.bean;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -32,6 +33,7 @@ public class Soutenance implements Serializable {
     private String reference;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateSoutenance;
+    private String heureSoutenance;
     private String resultatFinal;
 
     @OneToOne
@@ -102,6 +104,17 @@ public class Soutenance implements Serializable {
     public void setJurys(List<Jury> jurys) {
         this.jurys = jurys;
     }
+
+    public String getHeureSoutenance() {
+        return heureSoutenance;
+    }
+
+    public void setHeureSoutenance(String heureSoutenance) {
+        this.heureSoutenance = heureSoutenance;
+    }
+
+   
+   
 
 
 

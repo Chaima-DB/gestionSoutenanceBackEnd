@@ -63,5 +63,9 @@ public class JuryRest {
     public int deleteBySoutenanceReference(@PathVariable String reference) {
         return juryService.deleteBySoutenanceReference(reference);
     }
+    @GetMapping("/")
+    public List<Jury> findAll() {
+        return juryService.findAll();
+    }
 
 }

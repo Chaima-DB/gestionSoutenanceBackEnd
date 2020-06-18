@@ -28,7 +28,6 @@ public class Doctorant extends Personnel {
     private Long id;
     private String cne;
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private Date dateInscription;
     private String password;
 
