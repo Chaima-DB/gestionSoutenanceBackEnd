@@ -85,8 +85,6 @@ public class DoctorantServiceImpl implements DoctorantService{
         founded.get().setCNE(doctorant.getCne());
         founded.get().setCin(doctorant.getCin());
         founded.get().setDateInscription(doctorant.getDateInscription());
-       
-        
         doctorantDao.save((founded.get()));
         return 1;
         }else{

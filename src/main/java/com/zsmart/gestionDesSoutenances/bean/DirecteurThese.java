@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -24,7 +25,8 @@ public class DirecteurThese implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date date;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateDebutEncadrement;
 
     @ManyToOne
     private Professeur professeur;
@@ -60,12 +62,14 @@ public class DirecteurThese implements Serializable {
         this.doctorant = doctorant;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateDebutEncadrement() {
+        return dateDebutEncadrement;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateDebutEncadrement(Date dateDebutEncadrement) {
+        this.dateDebutEncadrement = dateDebutEncadrement;
     }
+
+   
 
 }
