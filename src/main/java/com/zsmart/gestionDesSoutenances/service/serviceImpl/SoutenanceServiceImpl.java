@@ -13,11 +13,11 @@ import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
 import com.zsmart.gestionDesSoutenances.service.facade.JuryService;
 import com.zsmart.gestionDesSoutenances.service.facade.SoutenanceService;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 /**
  *
@@ -69,9 +69,9 @@ public class SoutenanceServiceImpl implements SoutenanceService {
         } else {
             soutenance.setDoctorant(doctorant);
             soutenanceDao.save(soutenance);
-            juryService.save(soutenance,jurys);
-            return 1; 
-           
+            juryService.save(soutenance, jurys);
+            return 1;
+
         }
     }
 
@@ -85,6 +85,18 @@ public class SoutenanceServiceImpl implements SoutenanceService {
         return soutenanceDao.findByReference(reference);
     }
 
+    @Override
+    public int update(Soutenance soutenance, Long id) {
+        Optional<Soutenance> founded = soutenanceDao.findById(id);
+        if (founded != null) {
+            founded.get().setDoctorant(soutenance.getDoctorant());
+            founded.get().setReference(soutenance.getReference());
+            founded.get().setDateSoutenance(soutenance.getDateSoutenance());
+            founded.get().setHeureSoutenance(soutenance.getHeureSoutenance());
+            soutenanceDao.save((founded.get()));
+            return 1;
+        }
+        return -1;
+    }
 
-    
 }

@@ -24,5 +24,7 @@ public interface JuryService {
     int deleteBySoutenanceReference(String reference);
     
     List<Jury> findAll();
+    
+    int update(Jury jury, Long id);
 
 }

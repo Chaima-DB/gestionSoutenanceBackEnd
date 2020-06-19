@@ -15,44 +15,51 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
 
 import io.swagger.annotations.Api;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
+
 @Api
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("api/v1/gestionDesSoutenances-api/doctorant")
 public class DoctorantRest {
 
-	@Autowired
-        DoctorantService doctorantService;
+    @Autowired
+    DoctorantService doctorantService;
 
-        @GetMapping("/")
+    @GetMapping("/")
     public List<Doctorant> findAll() {
         return doctorantService.findAll();
     }
-     @DeleteMapping("/cin/{cin}")
+
+    @DeleteMapping("/cin/{cin}")
     public int deleteByCin(@PathVariable String cin) {
         return doctorantService.deleteByCin(cin);
     }
-@GetMapping("/cin/{cin}")
+
+    @GetMapping("/cin/{cin}")
     public Doctorant findByCin(@PathVariable String cin) {
         return doctorantService.findByCin(cin);
     }
-@GetMapping("/cne/{cne}")
+
+    @GetMapping("/cne/{cne}")
     public Doctorant findByCne(@PathVariable String cne) {
         return doctorantService.findByCne(cne);
     }
-@PostMapping("/")
+
+    @PostMapping("/")
     public int save(@RequestBody Doctorant doctorant) {
         return doctorantService.save(doctorant);
     }
+
     @PutMapping("/id/{id}")
-    public int update(@RequestBody Doctorant doctorant,@PathVariable Long id) {
+    public int update(@RequestBody Doctorant doctorant, @PathVariable Long id) {
         return doctorantService.update(doctorant, id);
     }
 
-        
-
+    @PutMapping("/doctorat/id/{id}")
+    public int updateDoctorat(@RequestBody Doctorant doctorant, @PathVariable Long id) {
+        return doctorantService.updateDoctorat(doctorant, id);
+    }
 
 }

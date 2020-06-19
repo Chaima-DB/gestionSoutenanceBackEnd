@@ -17,10 +17,8 @@ import com.zsmart.gestionDesSoutenances.service.facade.StructureDeRechercheServi
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.RollbackException;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -89,6 +87,19 @@ public class DoctorantServiceImpl implements DoctorantService{
         founded.get().setDateInscription(doctorant.getDateInscription());
        
         
+        doctorantDao.save((founded.get()));
+        return 1;
+        }else{
+        return -1;
+        }
+    }
+
+    @Override
+    public int updateDoctorat(Doctorant doctorant, Long id) {
+        Optional<Doctorant> founded = doctorantDao.findById(id);
+        if(founded != null){
+        founded.get().setStructureDeRecherche(doctorant.getStructureDeRecherche());
+        founded.get().setSpecialite(doctorant.getSpecialite());
         doctorantDao.save((founded.get()));
         return 1;
         }else{

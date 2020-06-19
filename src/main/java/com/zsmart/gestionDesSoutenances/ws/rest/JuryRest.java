@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,9 +45,15 @@ public class JuryRest {
     public int deleteBySoutenanceReference(@PathVariable String reference) {
         return juryService.deleteBySoutenanceReference(reference);
     }
+    
     @GetMapping("/")
     public List<Jury> findAll() {
         return juryService.findAll();
+    }
+    
+    @PutMapping("/id/{id}")
+    public int update(Jury jury, Long id) {
+        return juryService.update(jury, id);
     }
 
 }

@@ -5,28 +5,37 @@
  */
 package com.zsmart.gestionDesSoutenances.bean;
 
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author HP
  */
 @Entity
-public class DirecteurThese extends Professeur{
-     private static final long serialVersionUID = 1L;
+public class DirecteurThese implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Date date;
 
-    
+    @ManyToOne
+    private Professeur professeur;
+
+    @ManyToOne
+    private Doctorant doctorant;
+
     public DirecteurThese() {
-    	//super()
+        //super()
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -34,5 +43,29 @@ public class DirecteurThese extends Professeur{
     public void setId(Long id) {
         this.id = id;
     }
-   
+
+    public Professeur getProfesseur() {
+        return professeur;
+    }
+
+    public void setProfesseur(Professeur professeur) {
+        this.professeur = professeur;
+    }
+
+    public Doctorant getDoctorant() {
+        return doctorant;
+    }
+
+    public void setDoctorant(Doctorant doctorant) {
+        this.doctorant = doctorant;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

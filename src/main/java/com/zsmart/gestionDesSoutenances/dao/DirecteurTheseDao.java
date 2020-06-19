@@ -7,6 +7,7 @@ package com.zsmart.gestionDesSoutenances.dao;
 
 
 import com.zsmart.gestionDesSoutenances.bean.DirecteurThese;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DirecteurTheseDao extends JpaRepository<DirecteurThese, Long>{
-   int deleteByCin(String cin);
-   DirecteurThese findByCin(String cin);
+   int deleteByProfesseurCin(String cin);
+   int deleteByDoctorantCin(String cin);
+   DirecteurThese findByDoctorantCin(String cin);
+   List<DirecteurThese> findByProfesseurCin(String cin);
 }

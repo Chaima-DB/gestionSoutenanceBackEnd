@@ -5,7 +5,6 @@
  */
 package com.zsmart.gestionDesSoutenances.service.facade;
 
-
 import com.zsmart.gestionDesSoutenances.bean.DirecteurThese;
 import java.util.List;
 
@@ -14,8 +13,20 @@ import java.util.List;
  * @author HP
  */
 public interface DirecteurTheseService {
+
     List<DirecteurThese> findAll();
-    int deleteByCin(String cin);
-   DirecteurThese findByCin(String cin);
-   int save(DirecteurThese directeurThese);
+
+    int save(DirecteurThese directeurThese);
+    
+    int update(DirecteurThese directeurThese, Long id);
+
+    int deleteByProfesseurCin(String cin);
+
+    int deleteByDoctorantCin(String cin);
+
+    DirecteurThese findByDoctorantCin(String cin);
+
+    List<DirecteurThese> findByProfesseurCin(String cin);
+
+    
 }

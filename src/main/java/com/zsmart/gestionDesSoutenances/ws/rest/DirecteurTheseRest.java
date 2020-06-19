@@ -16,6 +16,8 @@ import com.zsmart.gestionDesSoutenances.service.facade.DirecteurTheseService;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PutMapping;
+
 @Api
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -30,19 +32,34 @@ public class DirecteurTheseRest {
         return directeurTheseService.findAll();
     }
 
-    @DeleteMapping("/cin/{cin}")
-    public int deleteByCin(@PathVariable String cin) {
-        return directeurTheseService.deleteByCin(cin);
+    @DeleteMapping("/profCin/{cin}")
+    public int deleteByProfesseurCin(@PathVariable String cin) {
+        return directeurTheseService.deleteByProfesseurCin(cin);
     }
 
-    @GetMapping("/cin/{cin}")
-    public DirecteurThese findByCin(@PathVariable String cin) {
-        return directeurTheseService.findByCin(cin);
+    @DeleteMapping("/docCin/{cin}")
+    public int deleteByDoctorantCin(@PathVariable String cin) {
+        return directeurTheseService.deleteByDoctorantCin(cin);
+    }
+
+    @GetMapping("/docCin/{cin}")
+    public DirecteurThese findByDoctorantCin(@PathVariable String cin) {
+        return directeurTheseService.findByDoctorantCin(cin);
+    }
+
+    @GetMapping("/profCin/{cin}")
+    public List<DirecteurThese> findByProfesseurCin(@PathVariable String cin) {
+        return directeurTheseService.findByProfesseurCin(cin);
     }
 
     @PostMapping("/")
     public int save(@RequestBody DirecteurThese directeurThese) {
         return directeurTheseService.save(directeurThese);
+    }
+
+    @PutMapping("/id/{id}")
+    public int update(@RequestBody DirecteurThese directeurThese, @PathVariable Long id) {
+        return directeurTheseService.update(directeurThese, id);
     }
 
 }

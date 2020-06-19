@@ -27,5 +27,5 @@ public interface SoutenanceService {
 
     int save(Soutenance soutenance, List<Jury> jurys);
    
-
+    int update(Soutenance soutenance, Long id);
 }

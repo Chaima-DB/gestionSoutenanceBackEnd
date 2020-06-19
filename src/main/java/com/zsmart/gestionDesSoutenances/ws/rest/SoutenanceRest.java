@@ -16,6 +16,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.SoutenanceService;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PutMapping;
 @Api
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -53,6 +54,10 @@ public class SoutenanceRest {
     @PostMapping("/")
     public int save(@RequestBody Soutenance soutenance) {
         return soutenanceService.save(soutenance, soutenance.getJurys());
+    }
+    @PutMapping("/id/{id}")
+    public int update(@RequestBody Soutenance soutenance,@PathVariable Long id) {
+        return soutenanceService.update(soutenance, id);
     }
 
     

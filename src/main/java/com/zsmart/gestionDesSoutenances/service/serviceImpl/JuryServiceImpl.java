@@ -14,6 +14,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.ProfesseurService;
 import com.zsmart.gestionDesSoutenances.service.facade.SoutenanceService;
 import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,20 @@ public class JuryServiceImpl implements JuryService {
     @Override
     public List<Jury> findAll() {
         return juryDao.findAll();
+    }
+
+    @Override
+    public int update(Jury jury, Long id) {
+        Optional<Jury> founded = juryDao.findById(id);
+        if(founded != null){
+        founded.get().setSoutenance(jury.getSoutenance());
+        founded.get().setProfesseur(jury.getProfesseur());
+        founded.get().setAvis(jury.getAvis());
+        juryDao.save((founded.get()));
+        return 1;
+        }else{
+        return -1;
+        }
     }
 
    
