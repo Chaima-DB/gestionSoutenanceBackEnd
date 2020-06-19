@@ -6,10 +6,14 @@
 package com.zsmart.gestionDesSoutenances.bean;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -28,9 +32,20 @@ public class Personnel implements Serializable {
 
     @ManyToOne
     protected Specialite specialite;
-
     
-    public Personnel(String cin, String nom, String prenom, String sexe, String email, String tel,
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+    
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Personnel(String cin, String nom, String prenom, String sexe, String email, String tel,
 			Specialite specialite) {
 		super();
 		this.cin = cin;
