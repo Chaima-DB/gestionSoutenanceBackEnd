@@ -85,6 +85,9 @@ public class DoctorantServiceImpl implements DoctorantService{
         founded.get().setCNE(doctorant.getCne());
         founded.get().setCin(doctorant.getCin());
         founded.get().setDateInscription(doctorant.getDateInscription());
+        founded.get().setTel(doctorant.getTel());
+        founded.get().setSexe(doctorant.getSexe());
+        
         doctorantDao.save((founded.get()));
         return 1;
         }else{
@@ -98,6 +101,7 @@ public class DoctorantServiceImpl implements DoctorantService{
         if(founded != null){
         founded.get().setStructureDeRecherche(doctorant.getStructureDeRecherche());
         founded.get().setSpecialite(doctorant.getSpecialite());
+        founded.get().setDirecteurThese(doctorant.getDirecteurThese());
         doctorantDao.save((founded.get()));
         return 1;
         }else{

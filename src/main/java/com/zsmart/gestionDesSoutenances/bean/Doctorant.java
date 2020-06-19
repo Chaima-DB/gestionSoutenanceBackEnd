@@ -5,7 +5,6 @@
  */
 package com.zsmart.gestionDesSoutenances.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +33,7 @@ public class Doctorant extends Personnel {
     @OneToOne
     private Sujet sujet;
 
-    @ManyToOne
+    @OneToOne
     private DirecteurThese directeurThese;
 
     @ManyToOne

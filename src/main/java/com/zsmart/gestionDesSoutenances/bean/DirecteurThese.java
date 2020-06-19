@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -31,7 +32,7 @@ public class DirecteurThese implements Serializable {
     @ManyToOne
     private Professeur professeur;
 
-    @ManyToOne
+    @OneToOne
     private Doctorant doctorant;
 
     public DirecteurThese() {
