@@ -82,7 +82,7 @@ public class DoctorantServiceImpl implements DoctorantService{
     public int update(Doctorant doctorant,Long id) {
         Optional<Doctorant> founded = doctorantDao.findById(id);
         if(founded != null){
-        founded.get().setCNE(doctorant.getCne());
+        founded.get().setCne(doctorant.getCne());
         founded.get().setCin(doctorant.getCin());
         founded.get().setDateInscription(doctorant.getDateInscription());
         founded.get().setTel(doctorant.getTel());

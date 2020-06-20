@@ -19,7 +19,7 @@ import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.CrossOrigin;
 @Api
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*")
 @RequestMapping("api/v1/gestionDesSoutenances-api/soutenanceJury")
 public class SoutenanceJuryRest {
 

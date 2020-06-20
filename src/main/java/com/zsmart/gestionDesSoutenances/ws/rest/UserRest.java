@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zsmart.gestionDesSoutenances.bean.User;
 import com.zsmart.gestionDesSoutenances.service.facade.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+//@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/")
+@RequestMapping("api/v1/gestionDesSoutenances-api/sujet")
 public class UserRest {
 	@Autowired
 	UserService userService ;

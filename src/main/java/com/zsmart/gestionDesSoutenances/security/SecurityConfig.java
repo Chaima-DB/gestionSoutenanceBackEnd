@@ -3,6 +3,7 @@ package com.zsmart.gestionDesSoutenances.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -33,13 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+                
      	//http.formLogin();// in case of spring security guard this : enable login form
      	http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN","SUPER_ADMIN")
+                http.cors()
+                .and()
+		.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN","SUPER_ADMIN")
 		.antMatchers("/public/**").hasAnyRole("ADMIN", "SUPER_ADMIN","PUBLIC")
 		.antMatchers("/**").permitAll()
+                .antMatchers("/").permitAll()
 		.and()
-		.addFilter(new JwtAuthentificationFilter(authenticationManager()))
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
+		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))
 		.addFilterBefore(new JwtAutorisationFilter(), UsernamePasswordAuthenticationFilter.class);
 //		.and()
 //		.addFilter(new );

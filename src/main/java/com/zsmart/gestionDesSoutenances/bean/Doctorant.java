@@ -59,7 +59,7 @@ public class Doctorant extends Personnel {
         return cne;
     }
 
-    public void setCNE(String cne) {
+    public void setCne(String cne) {
         this.cne = cne;
     }
 

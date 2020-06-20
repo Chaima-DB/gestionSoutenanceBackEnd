@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @Api
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+//@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*")
 @RequestMapping("api/v1/gestionDesSoutenances-api/doctorant")
 public class DoctorantRest {
 
