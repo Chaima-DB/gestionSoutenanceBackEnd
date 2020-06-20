@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @Api
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200"})
 
 @RequestMapping("api/v1/gestionDesSoutenances-api/directeurThese")
 public class DirecteurTheseRest {
@@ -53,7 +53,7 @@ public class DirecteurTheseRest {
         return directeurTheseService.findByProfesseurCin(cin);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/")
     public int save(@RequestBody DirecteurThese directeurThese) {
         return directeurTheseService.save(directeurThese);
     }

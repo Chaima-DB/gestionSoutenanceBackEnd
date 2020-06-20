@@ -1,3 +1,4 @@
+
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
 import java.util.List;
@@ -25,17 +26,21 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	
+	@Override
+	public User findByEmail(String email) {
+		return userDao.findByEmail(email);
+	}
 
 	@Override
 	public int save(User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		User foundedUser = userDao.findByEmail(user.getEmail());
-		if (foundedUser != null) {
-			return -1;
-		} else {
+		
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setIsEnabled(true);
 			userDao.save(user);
 			return 1;
-		}
+		
 	}
 
 	@Override
@@ -59,5 +64,6 @@ public class UserServiceImpl implements UserService {
 		return userDao.findByEmail(email);
 	}
 
+	
 
 }

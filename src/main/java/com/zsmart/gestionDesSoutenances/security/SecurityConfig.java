@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -33,23 +34,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		
 		http.csrf().disable();
-                
-     	//http.formLogin();// in case of spring security guard this : enable login form
-     	http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                http.cors()
-                .and()
-		.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN","SUPER_ADMIN")
-		.antMatchers("/public/**").hasAnyRole("ADMIN", "SUPER_ADMIN","PUBLIC")
-		.antMatchers("/**").permitAll()
-                .antMatchers("/").permitAll()
+		// http.formLogin();// in case of spring security guard this : enable login form
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.cors()
 		.and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
+		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))
+		.authorizeRequests().antMatchers("/authenticate", "/signin").permitAll()
+		.antMatchers("/user/welcome").authenticated()
+		.and()
+		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);	
 		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))
 		.addFilterBefore(new JwtAutorisationFilter(), UsernamePasswordAuthenticationFilter.class);
 //		.and()
 //		.addFilter(new );
-		
+
 	}
 
 	@Bean
@@ -61,5 +63,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 }

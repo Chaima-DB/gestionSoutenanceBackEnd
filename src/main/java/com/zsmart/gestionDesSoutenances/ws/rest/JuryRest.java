@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api
 @RestController
-//@CrossOrigin(origins = {"http://localhost:4200"})
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("api/v1/gestionDesSoutenances-api/jury")
 public class JuryRest {
 

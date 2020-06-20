@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @Api
 @RestController
-//@CrossOrigin(origins = {"http://localhost:4200"})
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("api/v1/gestionDesSoutenances-api/doctorant")
 public class DoctorantRest {
 
@@ -29,6 +28,7 @@ public class DoctorantRest {
     DoctorantService doctorantService;
 
     @GetMapping("/")
+   // @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
     public List<Doctorant> findAll() {
         return doctorantService.findAll();
     }

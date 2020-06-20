@@ -7,5 +7,6 @@ import com.zsmart.gestionDesSoutenances.bean.Role;
 
 @Repository
 public interface RoleDao extends JpaRepository<Role, Long> {
-
+	public Role findByTitre(String titre);
+	
 }
