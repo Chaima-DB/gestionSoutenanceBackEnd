@@ -1,5 +1,7 @@
 package com.zsmart.gestionDesSoutenances.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +18,18 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "role")
-public class Role {
+public class Role implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8479866171255684079L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "titre", nullable = false)
+	@Column(name = "titre")
 	private String titre;
 
 	

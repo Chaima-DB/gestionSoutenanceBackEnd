@@ -1,5 +1,6 @@
 package com.zsmart.gestionDesSoutenances.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,9 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,12 +42,14 @@ public class User implements UserDetails {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "isEnabled")
+	@Column(name = "isEnabled", columnDefinition = "default true")
 	private Boolean isEnabled = true;
+
+
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "role_id") })
+	@JoinColumn(name = "role_id") })
 	List<Role> roles = new ArrayList<Role>();
 
 	public Long getId() {
@@ -133,7 +137,6 @@ public class User implements UserDetails {
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 }
