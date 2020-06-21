@@ -17,58 +17,56 @@ import com.zsmart.gestionDesSoutenances.service.facade.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
+        @Autowired
+        UserDao userDao;
+	@Autowired
+	RoleService roleService;
 
-    @Autowired
-    UserDao userDao;
-    
-    @Autowired
-    RoleService roleService;
-    
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
-    @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email);
-    }
-    
-    @Override
-    public int save(User user) {
-        User founderUser = userDao.findByEmail(user.getEmail());
-        if (founderUser != null) {
-            return 0;
-        } else {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setIsEnabled(true);
-            user.setRole(roleService.findByTitre(user.getRole()));
-            userDao.save(user);
-            return 1;
-        }
-    }
-    
-    @Override
-    public List<User> findAll() {
-        return userDao.findAll();
-    }
-    
-    @Override
-    public String authenticate(User user) {
-        try {
-            authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-        } catch (Exception e) {
-            return "Bad Creditienl for " + user.getEmail() + e;
-        }
-        UserDetails userDetails = loadUserByUsername(user.getEmail());
-        return JwtUtil.generateToken(userDetails);
-    }
-    
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userDao.findByEmail(email);
-    }
-    
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Override
+	public User findByEmail(String email) {
+		return userDao.findByEmail(email);
+	}
+
+	@Override
+	public int save(User user) {
+		User founderUser = userDao.findByEmail(user.getEmail());
+		if (founderUser != null) {
+			return 0;
+		} else {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+			user.setRole(roleService.findByTitre(user.getRole()));
+			userDao.save(user);
+			return 1;
+		}
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userDao.findAll();
+	}
+
+	@Override
+	public String authenticate(User user) {
+		try {
+			authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+		} catch (Exception e) {
+			return "Bad Creditienl for " + user.getEmail() + e;
+		}
+		UserDetails userDetails = loadUserByUsername(user.getEmail());
+		return JwtUtil.generateToken(userDetails);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		return userDao.findByEmail(email);
+	}
+
 }
