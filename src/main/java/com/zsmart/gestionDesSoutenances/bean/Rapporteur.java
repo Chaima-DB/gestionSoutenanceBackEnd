@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -20,22 +19,22 @@ import javax.persistence.Temporal;
  * @author HP
  */
 @Entity
-public class DirecteurThese implements Serializable {
+public class Rapporteur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateDebutEncadrement;
+    private Date dateAffectation;
 
     @ManyToOne
     private Professeur professeur;
 
-    @OneToOne
+    @ManyToOne
     private Doctorant doctorant;
 
-    public DirecteurThese() {
+    public Rapporteur() {
         //super()
     }
 
@@ -63,14 +62,12 @@ public class DirecteurThese implements Serializable {
         this.doctorant = doctorant;
     }
 
-    public Date getDateDebutEncadrement() {
-        return dateDebutEncadrement;
+    public Date getDateAffectation() {
+        return dateAffectation;
     }
 
-    public void setDateDebutEncadrement(Date dateDebutEncadrement) {
-        this.dateDebutEncadrement = dateDebutEncadrement;
+    public void setDateAffectation(Date dateAffectation) {
+        this.dateAffectation = dateAffectation;
     }
-
-   
 
 }

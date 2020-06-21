@@ -8,8 +8,6 @@ package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import com.zsmart.gestionDesSoutenances.bean.Specialite;
 import com.zsmart.gestionDesSoutenances.bean.StructureDeRecherche;
-import com.zsmart.gestionDesSoutenances.bean.User;
-import com.zsmart.gestionDesSoutenances.bean.Role;
 import com.zsmart.gestionDesSoutenances.dao.DoctorantDao;
 import com.zsmart.gestionDesSoutenances.service.facade.DirecteurTheseService;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
@@ -19,8 +17,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.StructureDeRechercheServi
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
 import com.zsmart.gestionDesSoutenances.service.facade.UserService;
 
-import java.net.MalformedURLException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -46,8 +43,6 @@ public class DoctorantServiceImpl implements DoctorantService {
 	SpecialiteService specialiteService;
 	@Autowired
 	UserService userService;
-	@Autowired
-	RoleService roleService;
 
 	@Override
 	public List<Doctorant> findAll() {
@@ -89,31 +84,39 @@ public class DoctorantServiceImpl implements DoctorantService {
 
 	}
 
-	@Override
-	public int update(Doctorant doctorant, Long id) {
-		Optional<Doctorant> founded = doctorantDao.findById(id);
-		if (founded != null) {
-			founded.get().setCne(doctorant.getCne());
-			founded.get().setCin(doctorant.getCin());
-			founded.get().setDateInscription(doctorant.getDateInscription());
-			doctorantDao.save((founded.get()));
-			return 1;
-		} else {
-			return -1;
-		}
-	}
+    @Override
+    public int update(Doctorant doctorant,Long id) {
+        Optional<Doctorant> founded = doctorantDao.findById(id);
+        if(founded != null){
+        founded.get().setCne(doctorant.getCne());
+        founded.get().setCin(doctorant.getCin());
+        founded.get().setDateInscription(doctorant.getDateInscription());
+        founded.get().setTel(doctorant.getTel());
+        founded.get().setSexe(doctorant.getSexe());
+        
+        doctorantDao.save((founded.get()));
+        return 1;
+        }else{
+        return -1;
+        }
+    }
 
-	@Override
-	public int updateDoctorat(Doctorant doctorant, Long id) {
-		Optional<Doctorant> founded = doctorantDao.findById(id);
-		if (founded != null) {
-			founded.get().setStructureDeRecherche(doctorant.getStructureDeRecherche());
-			founded.get().setSpecialite(doctorant.getSpecialite());
-			doctorantDao.save((founded.get()));
-			return 1;
-		} else {
-			return -1;
-		}
-	}
+    @Override
+    public int updateDoctorat(Doctorant doctorant, Long id) {
+        Optional<Doctorant> founded = doctorantDao.findById(id);
+        if(founded != null){
+        founded.get().setStructureDeRecherche(doctorant.getStructureDeRecherche());
+        founded.get().setSpecialite(doctorant.getSpecialite());
+        founded.get().setDirecteurThese(doctorant.getDirecteurThese());
+        doctorantDao.save((founded.get()));
+        return 1;
+        }else{
+        return -1;
+        }
+    }
 
+    
+    
+    
+ 
 }

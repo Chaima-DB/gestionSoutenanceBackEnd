@@ -1,4 +1,3 @@
-
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
 import java.util.List;
@@ -18,9 +17,8 @@ import com.zsmart.gestionDesSoutenances.service.facade.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	@Autowired
-	UserDao userDao;
-
+        @Autowired
+        UserDao userDao;
 	@Autowired
 	RoleService roleService;
 

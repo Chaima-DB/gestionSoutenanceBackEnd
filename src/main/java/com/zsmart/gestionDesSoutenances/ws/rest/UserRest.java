@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zsmart.gestionDesSoutenances.bean.User;
 import com.zsmart.gestionDesSoutenances.service.facade.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import io.swagger.annotations.Api;
 

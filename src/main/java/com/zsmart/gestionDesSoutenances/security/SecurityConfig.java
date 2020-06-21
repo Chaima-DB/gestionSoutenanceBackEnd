@@ -3,6 +3,7 @@ package com.zsmart.gestionDesSoutenances.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,8 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @Configuration
 @EnableWebSecurity
@@ -41,14 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.cors()
 		.and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
+		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))
 		.authorizeRequests().antMatchers("/authenticate", "/signin").permitAll()
 		.antMatchers("/user/welcome").authenticated()
 		.and()
 		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);	
-		
-
 		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))
-			.addFilterBefore(new JwtAutorisationFilter(), UsernamePasswordAuthenticationFilter.class);
+		.addFilterBefore(new JwtAutorisationFilter(), UsernamePasswordAuthenticationFilter.class);
 //		.and()
 //		.addFilter(new );
 

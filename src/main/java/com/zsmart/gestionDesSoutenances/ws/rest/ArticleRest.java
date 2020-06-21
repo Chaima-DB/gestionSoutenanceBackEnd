@@ -24,8 +24,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Api
 @RestController
+
 @CrossOrigin(origins = {"http://localhost:4200"})
-@RequestMapping("user/gestionDesSoutenances-api/article")
+@RequestMapping("api/v1/gestionDesSoutenances-api/article")
 public class ArticleRest {
 
 	@Autowired
