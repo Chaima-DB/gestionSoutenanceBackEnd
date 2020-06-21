@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 			return 0;
 		} else {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-
+			user.setIsEnabled(true);
 			user.setRole(roleService.findByTitre(user.getRole()));
 			userDao.save(user);
 			return 1;
