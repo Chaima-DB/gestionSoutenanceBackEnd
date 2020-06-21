@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,12 +47,8 @@ public class User implements UserDetails {
 	@Column(name = "isEnabled", columnDefinition = "default true")
 	private Boolean isEnabled = true;
 
-
-
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-	@JoinColumn(name = "role_id") })
-	List<Role> roles = new ArrayList<Role>();
+	@ManyToOne
+	private Role role;
 
 	public Long getId() {
 		return id;
@@ -76,32 +74,30 @@ public class User implements UserDetails {
 		this.isEnabled = isEnabled;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public User(Long id, String email, String password, Boolean isEnabled, List<Role> roles) {
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public User(String email, String password, Boolean isEnabled, Role role) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.isEnabled = isEnabled;
-		this.roles = roles;
+		this.role = role;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (final Role role : this.getRoles())
-			authorities.add(new SimpleGrantedAuthority(role.getTitre()));
+		authorities.add(new SimpleGrantedAuthority(role.getTitre()));
 		return authorities;
 	}
 

@@ -9,11 +9,9 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -42,11 +40,11 @@ public class Doctorant extends Personnel {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateInscription;
 
-    @OneToOne
-    private Sujet sujet;
+	@OneToOne
+	private Sujet sujet;
 
-    @ManyToOne
-    private DirecteurThese directeurThese;
+	@ManyToOne
+	private DirecteurThese directeurThese;
 
 	@ManyToOne
 	private StructureDeRecherche structureDeRecherche;
@@ -54,7 +52,7 @@ public class Doctorant extends Personnel {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
-    public User getUser() {
+	public User getUser() {
 		return user;
 	}
 
@@ -63,55 +61,55 @@ public class Doctorant extends Personnel {
 	}
 
 	public Doctorant() {
-    
-    }
 
-    public Long getId() {
-        return id;
-    }
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getCne() {
-        return cne;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setCne(String cne) {
-        this.cne = cne;
-    }
+	public String getCne() {
+		return cne;
+	}
 
-    public Date getDateInscription() {
-        return dateInscription;
-    }
+	public void setCne(String cne) {
+		this.cne = cne;
+	}
 
-    public void setDateInscription(Date dateInscription) {
-        this.dateInscription = dateInscription;
-    }
+	public Date getDateInscription() {
+		return dateInscription;
+	}
 
-    public Sujet getSujet() {
-        return sujet;
-    }
+	public void setDateInscription(Date dateInscription) {
+		this.dateInscription = dateInscription;
+	}
 
-    public void setSujet(Sujet sujet) {
-        this.sujet = sujet;
-    }
+	public Sujet getSujet() {
+		return sujet;
+	}
 
-    public StructureDeRecherche getStructureDeRecherche() {
-        return structureDeRecherche;
-    }
+	public void setSujet(Sujet sujet) {
+		this.sujet = sujet;
+	}
 
-    public void setStructureDeRecherche(StructureDeRecherche structureDeRecherche) {
-        this.structureDeRecherche = structureDeRecherche;
-    }
+	public StructureDeRecherche getStructureDeRecherche() {
+		return structureDeRecherche;
+	}
 
-    public DirecteurThese getDirecteurThese() {
-        return directeurThese;
-    }
+	public void setStructureDeRecherche(StructureDeRecherche structureDeRecherche) {
+		this.structureDeRecherche = structureDeRecherche;
+	}
 
-    public void setDirecteurThese(DirecteurThese directeurThese) {
-        this.directeurThese = directeurThese;
-    }
+	public DirecteurThese getDirecteurThese() {
+		return directeurThese;
+	}
+
+	public void setDirecteurThese(DirecteurThese directeurThese) {
+		this.directeurThese = directeurThese;
+	}
 
 }

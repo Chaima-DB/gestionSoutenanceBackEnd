@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "role")
 public class Role implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -32,5 +32,4 @@ public class Role implements Serializable {
 	@Column(name = "titre")
 	private String titre;
 
-	
 }

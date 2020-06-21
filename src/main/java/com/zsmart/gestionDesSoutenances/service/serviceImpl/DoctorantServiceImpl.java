@@ -71,22 +71,23 @@ public class DoctorantServiceImpl implements DoctorantService {
 	}
 
 	@Override
-    public int save(Doctorant doctorant) { 
-    		 Doctorant founded = doctorantDao.findByCin(doctorant.getCin());
-    	        Specialite specialite = specialiteService.findByReference(doctorant.getSpecialite().getReference());
-    	       StructureDeRecherche structure = structureDeRechercheService.findByReference(doctorant.getStructureDeRecherche().getReference());
-    	        if(founded!= null){
-    	        return -1;
-    	        }else{ 
-        	    userService.save(doctorant.getUser());
-    	        sujetService.save(doctorant.getSujet());
-    	        doctorant.setSpecialite(specialite);
-    	        doctorant.setStructureDeRecherche(structure);
-    	        doctorantDao.save(doctorant);
-    	        return 1;
-    	    	        }
+	public int save(Doctorant doctorant) {
+		Doctorant founded = doctorantDao.findByCin(doctorant.getCin());
+		Specialite specialite = specialiteService.findByReference(doctorant.getSpecialite().getReference());
+		StructureDeRecherche structure = structureDeRechercheService
+				.findByReference(doctorant.getStructureDeRecherche().getReference());
+		if (founded != null) {
+			return -1;
+		} else {
+			userService.save(doctorant.getUser());
+			sujetService.save(doctorant.getSujet());
+			doctorant.setSpecialite(specialite);
+			doctorant.setStructureDeRecherche(structure);
+			doctorantDao.save(doctorant);
+			return 1;
+		}
 
-    }
+	}
 
 	@Override
 	public int update(Doctorant doctorant, Long id) {
