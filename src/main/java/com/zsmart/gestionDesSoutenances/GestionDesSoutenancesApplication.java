@@ -1,5 +1,8 @@
 package com.zsmart.gestionDesSoutenances;
 
+import com.zsmart.gestionDesSoutenances.uploads.service.FilesStorageService;
+import javax.annotation.Resource;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class GestionDesSoutenancesApplication {
-	
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -28,4 +31,5 @@ public class GestionDesSoutenancesApplication {
 		SpringApplication.run(GestionDesSoutenancesApplication.class, args);
 	}
 
+   
 }
