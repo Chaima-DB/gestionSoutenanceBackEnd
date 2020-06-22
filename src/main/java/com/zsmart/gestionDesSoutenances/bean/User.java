@@ -47,8 +47,8 @@ public class User implements UserDetails {
 	@Column(name = "isEnabled", columnDefinition = "default true")
 	private Boolean isEnabled = true;
 
-	@ManyToOne
-	private Role role;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Role> roles = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -78,25 +78,27 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 
-	public Role getRole() {
-		return role;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
-
-	public User(String email, String password, Boolean isEnabled, Role role) {
+	
+	
+	public User(String email, String password, Boolean isEnabled, List<Role> roles) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.isEnabled = isEnabled;
-		this.role = role;
+		this.roles = roles;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		for (final Role role : getRoles())
 		authorities.add(new SimpleGrantedAuthority(role.getTitre()));
 		return authorities;
 	}

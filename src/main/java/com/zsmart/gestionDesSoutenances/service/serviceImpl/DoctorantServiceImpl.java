@@ -78,6 +78,7 @@ public class DoctorantServiceImpl implements DoctorantService {
 			sujetService.save(doctorant.getSujet());
 			doctorant.setSpecialite(specialite);
 			doctorant.setStructureDeRecherche(structure);
+			userService.addRoletouser(doctorant.getUser().getEmail(), "ROLE_USER");
 			doctorantDao.save(doctorant);
 			return 1;
 		}

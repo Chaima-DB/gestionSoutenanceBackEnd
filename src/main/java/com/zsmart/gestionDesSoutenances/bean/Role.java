@@ -14,7 +14,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "role")
@@ -31,5 +30,12 @@ public class Role implements Serializable {
 
 	@Column(name = "titre")
 	private String titre;
+
+	public Role(String titre) {
+		super();
+		this.titre = titre;
+	}
+	
+	
 
 }

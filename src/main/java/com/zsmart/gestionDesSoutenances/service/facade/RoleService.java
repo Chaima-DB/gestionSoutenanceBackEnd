@@ -6,9 +6,9 @@ import com.zsmart.gestionDesSoutenances.bean.Role;
 
 public interface RoleService {
 
-	public Role findByTitre(Role role);
+	public Role findByTitre(String string);
 
-	Role save(Role role);
+	int save(Role role);
 
 	public List<Role> findAll();
 

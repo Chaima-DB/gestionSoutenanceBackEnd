@@ -15,13 +15,13 @@ public class RoleServiceImpl implements RoleService {
 	RoleDao roleDao;
 
 	@Override
-	public Role save(Role role) {
+	public int save(Role role) {
 		Role loadedRole = roleDao.findByTitre(role.getTitre());
-		if (loadedRole == null) {
-			roleDao.save(role);
-			return role;
+		if (loadedRole != null) {
+			return 0;
 		} else {
-			return loadedRole;
+			roleDao.save(role);
+			return 1;
 		}
 	}
 
@@ -31,8 +31,9 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public Role findByTitre(Role role) {
-		return roleDao.findByTitre(role.getTitre());
+	public Role findByTitre(String titre) {
+		return roleDao.findByTitre(titre);
 	}
+
 
 }
