@@ -6,9 +6,7 @@
 package com.zsmart.gestionDesSoutenances.service.facade;
 
 import com.zsmart.gestionDesSoutenances.bean.Article;
-import java.io.File;
 import java.util.List;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -21,12 +19,11 @@ public interface ArticleService {
     List<Article> findByDoctorantCne(String cne);
 
     List<Article> findByDoctorantCin(String cin);
+
     List<Article> findByIndexationLibelle(String libelle);
 
     int deleteByReference(String reference);
-    
-    void uploadFile(MultipartFile file);
-    Article storeFile(MultipartFile file);
-    Article getFile(String reference);
+
+    int save(Article article);
 
 }

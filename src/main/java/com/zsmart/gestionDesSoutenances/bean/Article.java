@@ -5,13 +5,17 @@
  */
 package com.zsmart.gestionDesSoutenances.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zsmart.gestionDesSoutenances.uploads.model.FileInfo;
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -19,22 +23,24 @@ import javax.persistence.Temporal;
  * @author HP
  */
 @Entity
-public class Article extends Document {
+public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String reference;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePublicationArticle;
     private String motCle;
 
     @ManyToOne
-    Indexation  indexation;
-
-    public Article(String titre, byte[] pdf) {
-        super(titre, pdf);
-    }
+    Indexation indexation;
+    @ManyToOne
+    Doctorant doctorant;
+    
+    @OneToOne
+    FileInfo file;
 
     public Article() {
     }
@@ -61,6 +67,38 @@ public class Article extends Document {
 
     public void setMotCle(String motCle) {
         this.motCle = motCle;
+    }
+
+    public Indexation getIndexation() {
+        return indexation;
+    }
+
+    public void setIndexation(Indexation indexation) {
+        this.indexation = indexation;
+    }
+
+    public Doctorant getDoctorant() {
+        return doctorant;
+    }
+
+    public void setDoctorant(Doctorant doctorant) {
+        this.doctorant = doctorant;
+    }
+
+    public FileInfo getFile() {
+        return file;
+    }
+
+    public void setFile(FileInfo fileInfo) {
+        this.file = fileInfo;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
 }

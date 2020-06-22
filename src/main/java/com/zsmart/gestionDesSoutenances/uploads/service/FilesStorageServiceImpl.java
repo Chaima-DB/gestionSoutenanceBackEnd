@@ -5,6 +5,8 @@
  */
 package com.zsmart.gestionDesSoutenances.uploads.service;
 
+import com.zsmart.gestionDesSoutenances.bean.Article;
+import com.zsmart.gestionDesSoutenances.service.facade.ArticleService;
 import com.zsmart.gestionDesSoutenances.uploads.model.FileInfo;
 import com.zsmart.gestionDesSoutenances.uploads.model.FileInfoDao;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class FilesStorageServiceImpl implements FilesStorageService {
     @Autowired
     FileInfoDao fileInfoDao;
+    @Autowired
+    ArticleService articleService;
   private final Path root = Paths.get("uploads");
 
   @Override
@@ -40,7 +45,15 @@ public class FilesStorageServiceImpl implements FilesStorageService {
   @Override
   public void save(MultipartFile file) {
     try {
+      FileInfo fileInfo = new FileInfo();
+      Article article = new Article();
+      fileInfo.setName(file.getOriginalFilename());
+      fileInfo.setUrl("http://localhost:8090/files/"+file.getOriginalFilename());
+      fileInfo.setDateUpload(new Date());
+      fileInfoDao.save(fileInfo);
+      article.setFile(fileInfo);
       Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+      articleService.save(article);
     } catch (Exception e) {
       throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
     }
