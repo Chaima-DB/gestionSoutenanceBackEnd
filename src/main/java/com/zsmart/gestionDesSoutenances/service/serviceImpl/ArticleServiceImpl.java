@@ -6,10 +6,18 @@
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
 import com.zsmart.gestionDesSoutenances.bean.Article;
+import com.zsmart.gestionDesSoutenances.bean.Doctorant;
+import com.zsmart.gestionDesSoutenances.bean.Indexation;
 import com.zsmart.gestionDesSoutenances.dao.ArticleDao;
 import com.zsmart.gestionDesSoutenances.service.facade.ArticleService;
+import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
+import com.zsmart.gestionDesSoutenances.service.facade.IndexationService;
+import com.zsmart.gestionDesSoutenances.uploads.model.FileInfo;
+import com.zsmart.gestionDesSoutenances.uploads.service.FileInfoService;
+import com.zsmart.gestionDesSoutenances.uploads.service.FilesStorageService;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +37,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     ArticleDao articleDao;
+    @Autowired
+    IndexationService indexationService;
+    @Autowired
+    DoctorantService doctorantService;
+    @Autowired
+    FilesStorageService filesStorageService;
 
     @Override
     public List<Article> findAll() {
@@ -52,42 +66,20 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void uploadFile(MultipartFile file) {
-
-        try {
-            Article article = new Article();
-            article.setPdf(file.getBytes());
-            articleDao.save(article);
-        } catch (IOException ex) {
-            Logger.getLogger(ArticleServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    @Override
-    public Article storeFile(MultipartFile file) {
-        try {
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-            Article dbFile = new Article(fileName, file.getBytes());
-            return articleDao.save(dbFile);
-        } catch (IOException ex) {
-            Logger.getLogger(ArticleServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-//
-//        public Article getFile(String reference) {
-//            return articleDao.findById(articleId)
-//                    .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
-//        }
-    @Override
-    public Article getFile(String reference) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
     public List<Article> findByIndexationLibelle(String libelle) {
         return articleDao.findByIndexationLibelle(libelle);
+    }
+
+    @Override
+    public int save(Article article) {
+        Date  date = new Date();
+        article.setDatePublicationArticle(date);
+        article.setDoctorant(article.getDoctorant());
+        article.setIndexation(article.getIndexation());
+        String ref = "art" + date.getTime();
+        article.setReference(ref);
+        articleDao.save(article);
+        return 1;
     }
 
 }

@@ -6,20 +6,25 @@
 package com.zsmart.gestionDesSoutenances.uploads.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.Temporal;
 
 @Entity
-public class FileInfo implements Serializable{
+public class FileInfo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-  private String name;
-  private String url;
+    private String name;
+    private String url;
+    private String description;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateUpload;
 
     public FileInfo() {
     }
@@ -29,7 +34,6 @@ public class FileInfo implements Serializable{
         this.url = url;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -37,23 +41,37 @@ public class FileInfo implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-  
 
-  public String getName() {
-    return this.name;
-  }
+    public String getName() {
+        return this.name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getUrl() {
-    return this.url;
-  }
+    public String getUrl() {
+        return this.url;
+    }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-  
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDateUpload() {
+        return dateUpload;
+    }
+
+    public void setDateUpload(Date dateUpload) {
+        this.dateUpload = dateUpload;
+    }
+
 }
