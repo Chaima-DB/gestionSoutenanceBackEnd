@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,6 +50,13 @@ public class FileInfoServiceImpl implements FileInfoService {
     public List<FileInfo> findAll() {
         return fileInfoDao.findAll();
     }
+
+
+
+	@Override
+	public FileInfo findByUrl(String url) {
+		return fileInfoDao.findByUrl(url);
+	}
 
    
 }

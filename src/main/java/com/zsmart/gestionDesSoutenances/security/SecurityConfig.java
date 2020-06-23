@@ -41,10 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.cors()
 		.and()
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
+        .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
 		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))
 		.authorizeRequests().antMatchers("/authenticate", "/signin").permitAll()
-		.antMatchers("/user/welcome").authenticated()
+		.antMatchers("/public").authenticated()
 		.and()
 		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);	
 		http.addFilter(new JwtAuthentificationFilter(authenticationManager()))

@@ -4,6 +4,7 @@ package com.zsmart.gestionDesSoutenances.ws.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,14 +37,17 @@ public class EtablissementRest {
         return etablissementService.findByReference(reference);
     }
         @DeleteMapping("/reference/{reference}")
+        @PreAuthorize(value="hasRole('ROLE_SUPER_ADMIN')")
     public int deleteByReference(@PathVariable String reference) {
         return etablissementService.deleteByReference(reference);
     }
         @PostMapping("/")
+        @PreAuthorize(value="hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
     public int save(@RequestBody Etablissement etablissement) {
         return etablissementService.save(etablissement);
     }
     @PutMapping("/")
+    @PreAuthorize(value="hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
     public Etablissement update(Etablissement etablissement) {
         return etablissementService.update(etablissement);
     }

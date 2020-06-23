@@ -26,8 +26,13 @@ public class DoctorantRest {
 
     @Autowired
     DoctorantService doctorantService;
+    
+    @GetMapping("/email/{email}")
+    public Doctorant findByUserEmail(@PathVariable String email) {
+		return doctorantService.findByUserEmail(email);
+	}
 
-    @GetMapping("/")
+	@GetMapping("/")
    // @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
     public List<Doctorant> findAll() {
         return doctorantService.findAll();

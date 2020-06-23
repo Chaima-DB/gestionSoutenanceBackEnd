@@ -27,5 +27,6 @@ public interface DoctorantService {
     int update(Doctorant doctorant, Long id);
 
     int updateDoctorat(Doctorant doctorant, Long id);
-
+    
+    Doctorant findByUserEmail(String email);
 }

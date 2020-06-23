@@ -19,4 +19,6 @@ public interface DoctorantDao extends JpaRepository<Doctorant, Long>{
  Doctorant findByCin(String cin);
  Doctorant findByCne(String cne);
  int deleteByCin(String cin);
+ Doctorant findByUserEmail(String email);
+ 
 }

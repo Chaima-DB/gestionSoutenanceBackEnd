@@ -116,6 +116,11 @@ public class DoctorantServiceImpl implements DoctorantService {
         }
     }
 
+	@Override
+	public Doctorant findByUserEmail(String email) {
+		return doctorantDao.findByUserEmail(email);
+	}
+
     
     
     

@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +28,13 @@ public class FileInfoController {
 
     @Autowired
     FileInfoService fileInfoService;
+    
+    @GetMapping("/url/{url}")
+	public FileInfo findByUrl(@PathVariable String url) {
+		return fileInfoService.findByUrl(url);
+	}
 
-    @PostMapping("/")
+	@PostMapping("/")
     public void save(@RequestParam("file") MultipartFile file) {
         fileInfoService.save(file);
     }
