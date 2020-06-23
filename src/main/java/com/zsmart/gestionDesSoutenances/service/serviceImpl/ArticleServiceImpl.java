@@ -72,13 +72,16 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int save(Article article) {
+        FileInfo fileInfo = new FileInfo();
         Date  date = new Date();
         article.setDatePublicationArticle(date);
         article.setDoctorant(article.getDoctorant());
         article.setIndexation(article.getIndexation());
         String ref = "art" + date.getTime();
         article.setReference(ref);
+        article.setFile(fileInfo);
         articleDao.save(article);
+        
         return 1;
     }
 
