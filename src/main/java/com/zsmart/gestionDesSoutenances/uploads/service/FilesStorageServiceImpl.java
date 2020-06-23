@@ -27,10 +27,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FilesStorageServiceImpl implements FilesStorageService {
-    @Autowired
-    FileInfoDao fileInfoDao;
+    
     @Autowired
     ArticleService articleService;
+    @Autowired
+    FileInfoDao fileInfoDao;
   private final Path root = Paths.get("uploads");
 
   @Override
@@ -45,15 +46,9 @@ public class FilesStorageServiceImpl implements FilesStorageService {
   @Override
   public void save(MultipartFile file) {
     try {
-      FileInfo fileInfo = new FileInfo();
-      Article article = new Article();
-      fileInfo.setName(file.getOriginalFilename());
-      fileInfo.setUrl("http://localhost:8090/files/"+file.getOriginalFilename());
-      fileInfo.setDateUpload(new Date());
-      fileInfoDao.save(fileInfo);
-      article.setFile(fileInfo);
+     
       Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-      articleService.save(article);
+      
     } catch (Exception e) {
       throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
     }
