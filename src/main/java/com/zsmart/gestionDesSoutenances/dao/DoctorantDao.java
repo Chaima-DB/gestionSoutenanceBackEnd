@@ -5,7 +5,6 @@
  */
 package com.zsmart.gestionDesSoutenances.dao;
 
-
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,8 +14,12 @@ import org.springframework.stereotype.Repository;
  * @author HP
  */
 @Repository
-public interface DoctorantDao extends JpaRepository<Doctorant, Long>{
- Doctorant findByCin(String cin);
- Doctorant findByCne(String cne);
- int deleteByCin(String cin);
+public interface DoctorantDao extends JpaRepository<Doctorant, Long> {
+
+    Doctorant findByCin(String cin);
+
+    Doctorant findByCne(String cne);
+
+    int deleteByCin(String cin);
+
 }

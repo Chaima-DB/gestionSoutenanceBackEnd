@@ -10,6 +10,5 @@ import com.zsmart.gestionDesSoutenances.bean.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Long>{
 	public User findByEmail(String email);
-	public List<User> findAll();
 
 }

@@ -21,4 +21,5 @@ public interface DirecteurTheseDao extends JpaRepository<DirecteurThese, Long>{
    int deleteByDoctorantCin(String cin);
    DirecteurThese findByDoctorantCin(String cin);
    List<DirecteurThese> findByProfesseurCin(String cin);
+   List<DirecteurThese> findByProfesseurUserEmail(String email);
 }

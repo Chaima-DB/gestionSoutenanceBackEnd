@@ -28,7 +28,7 @@ public class DoctorantRest {
     DoctorantService doctorantService;
 
     @GetMapping("/")
-   // @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+    // @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
     public List<Doctorant> findAll() {
         return doctorantService.findAll();
     }

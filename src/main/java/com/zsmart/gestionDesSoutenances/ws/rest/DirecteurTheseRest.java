@@ -48,10 +48,6 @@ public class DirecteurTheseRest {
         return directeurTheseService.findByDoctorantCin(cin);
     }
 
-    @GetMapping("/profCin/{cin}")
-    public List<DirecteurThese> findByProfesseurCin(@PathVariable String cin) {
-        return directeurTheseService.findByProfesseurCin(cin);
-    }
 
     @PostMapping("/")
     public int save(@RequestBody DirecteurThese directeurThese) {
@@ -61,6 +57,10 @@ public class DirecteurTheseRest {
     @PutMapping("/id/{id}")
     public int update(@RequestBody DirecteurThese directeurThese, @PathVariable Long id) {
         return directeurTheseService.update(directeurThese, id);
+    }
+    @GetMapping("/email/{email}")
+    public List<DirecteurThese> findByProfesseurUserEmail(@PathVariable String email) {
+        return directeurTheseService.findByProfesseurUserEmail(email);
     }
 
 }

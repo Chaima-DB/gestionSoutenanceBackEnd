@@ -26,7 +26,7 @@ public interface DirecteurTheseService {
 
     DirecteurThese findByDoctorantCin(String cin);
 
-    List<DirecteurThese> findByProfesseurCin(String cin);
+    List<DirecteurThese> findByProfesseurUserEmail(String email);
 
     
 }

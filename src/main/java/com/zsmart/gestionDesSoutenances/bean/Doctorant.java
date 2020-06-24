@@ -7,7 +7,6 @@ package com.zsmart.gestionDesSoutenances.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,89 +25,77 @@ import lombok.Setter;
  */
 @AllArgsConstructor
 @Entity
-@Data
 @Getter
 @Setter
 public class Doctorant extends Personnel {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String cne;
-	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date dateInscription;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String cne;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateInscription;
 
-	@OneToOne
-	private Sujet sujet;
+    @OneToOne
+    private Sujet sujet;
 
-	@ManyToOne
-	private DirecteurThese directeurThese;
+    @ManyToOne
+    private DirecteurThese directeurThese;
 
-	@ManyToOne
-	private StructureDeRecherche structureDeRecherche;
+    @ManyToOne
+    private StructureDeRecherche structureDeRecherche;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private User user;
+    public Doctorant() {
 
-	public User getUser() {
-		return user;
-	}
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Doctorant() {
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	}
+    public String getCne() {
+        return cne;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setCne(String cne) {
+        this.cne = cne;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Date getDateInscription() {
+        return dateInscription;
+    }
 
-	public String getCne() {
-		return cne;
-	}
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
+    }
 
-	public void setCne(String cne) {
-		this.cne = cne;
-	}
+    public Sujet getSujet() {
+        return sujet;
+    }
 
-	public Date getDateInscription() {
-		return dateInscription;
-	}
+    public void setSujet(Sujet sujet) {
+        this.sujet = sujet;
+    }
 
-	public void setDateInscription(Date dateInscription) {
-		this.dateInscription = dateInscription;
-	}
+    public StructureDeRecherche getStructureDeRecherche() {
+        return structureDeRecherche;
+    }
 
-	public Sujet getSujet() {
-		return sujet;
-	}
+    public void setStructureDeRecherche(StructureDeRecherche structureDeRecherche) {
+        this.structureDeRecherche = structureDeRecherche;
+    }
 
-	public void setSujet(Sujet sujet) {
-		this.sujet = sujet;
-	}
+    public DirecteurThese getDirecteurThese() {
+        return directeurThese;
+    }
 
-	public StructureDeRecherche getStructureDeRecherche() {
-		return structureDeRecherche;
-	}
-
-	public void setStructureDeRecherche(StructureDeRecherche structureDeRecherche) {
-		this.structureDeRecherche = structureDeRecherche;
-	}
-
-	public DirecteurThese getDirecteurThese() {
-		return directeurThese;
-	}
-
-	public void setDirecteurThese(DirecteurThese directeurThese) {
-		this.directeurThese = directeurThese;
-	}
+    public void setDirecteurThese(DirecteurThese directeurThese) {
+        this.directeurThese = directeurThese;
+    }
 
 }
