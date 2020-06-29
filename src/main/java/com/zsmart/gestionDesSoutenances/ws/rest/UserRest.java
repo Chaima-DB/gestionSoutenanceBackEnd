@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zsmart.gestionDesSoutenances.bean.User;
 import com.zsmart.gestionDesSoutenances.service.facade.UserService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import io.swagger.annotations.Api;
 
 @Api
@@ -31,11 +29,6 @@ public class UserRest {
 	@GetMapping("/email/{email}")
 	public User findByEmail(@PathVariable String email) {
 		return userService.findByEmail(email);
-	}
-
-	@GetMapping("/welcome")
-	public String welcome() {
-		return "Welcome to spring boot";
 	}
 
 	@GetMapping("public/users")

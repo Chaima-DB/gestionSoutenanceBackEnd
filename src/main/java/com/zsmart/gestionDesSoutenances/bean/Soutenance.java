@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package com.zsmart.gestionDesSoutenances.bean;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+ 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;

@@ -1,8 +1,10 @@
 package com.zsmart.gestionDesSoutenances.bean;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +40,8 @@ public class User implements UserDetails {
 	@Column(name = "isEnabled", columnDefinition = "default true")
 	private Boolean isEnabled = true;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade =CascadeType.PERSIST ,fetch = FetchType.EAGER)
+      
 	private List<Role> roles = new ArrayList<>();
         
         public User() {
@@ -90,7 +93,7 @@ public class User implements UserDetails {
 		this.isEnabled = isEnabled;
 		this.roles = roles;
 	}
-
+       
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

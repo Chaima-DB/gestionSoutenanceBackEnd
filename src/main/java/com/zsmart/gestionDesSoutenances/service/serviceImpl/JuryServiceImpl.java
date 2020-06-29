@@ -39,10 +39,11 @@ public class JuryServiceImpl implements JuryService {
 
     @Override
     public int save(Soutenance soutenance, List<Jury> jurys) {
+        
         jurys.forEach(j -> {
+            Professeur p = professeurService.findByCin(j.getProfesseur().getCin());
+            j.setProfesseur(p);
             j.setSoutenance(soutenance);
-            Professeur professeur = professeurService.findByCin(j.getProfesseur().getCin());
-            j.setProfesseur(professeur);
             juryDao.save(j);
         }
         );
@@ -74,14 +75,17 @@ public class JuryServiceImpl implements JuryService {
     public int update(Jury jury, Long id) {
         Optional<Jury> founded = juryDao.findById(id);
         if(founded != null){
-        founded.get().setSoutenance(jury.getSoutenance());
-        founded.get().setProfesseur(jury.getProfesseur());
         founded.get().setAvis(jury.getAvis());
         juryDao.save((founded.get()));
         return 1;
         }else{
         return -1;
         }
+    }
+
+    @Override
+    public Optional<Jury> findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    

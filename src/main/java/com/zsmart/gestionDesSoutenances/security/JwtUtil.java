@@ -23,6 +23,8 @@ public class JwtUtil {
 	public static final String HTTP_AUTORISATION_HEADER = "Authorization";
 	public static final String EMPTY_STRING = "";
 	private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 10; // 10h
+
+   
 	
 //	 private static String getToken(HttpServletRequest request) {
 //		return request.getHeader(HTTP_AUTORISATION_HEADER);

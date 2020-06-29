@@ -19,5 +19,7 @@ public interface ProfesseurDao extends JpaRepository<Professeur, Long> {
     Professeur findByCin(String cin);
 
     int deleteByCin(String cin);
+    
+    Professeur findByUserEmail(String email);
 
 }

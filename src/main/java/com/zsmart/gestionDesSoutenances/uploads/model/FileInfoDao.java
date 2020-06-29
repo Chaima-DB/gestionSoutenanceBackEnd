@@ -5,6 +5,8 @@
  */
 package com.zsmart.gestionDesSoutenances.uploads.model;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FileInfoDao extends JpaRepository<FileInfo, Long>{
-   
+	FileInfo findByUrl(String url);
+	
 }

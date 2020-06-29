@@ -14,16 +14,19 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.zsmart.gestionDesSoutenances.bean.User;
 
 public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFilter {
+
+    
 	private AuthenticationManager authenticationManager;
 
 	public JwtAuthentificationFilter(AuthenticationManager authenticationManager) {
 		super();
 		this.authenticationManager = authenticationManager;
 	}
-
+        
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
@@ -36,7 +39,7 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 		return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 	}
 
-
+       
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {

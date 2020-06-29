@@ -106,7 +106,6 @@ public class DoctorantServiceImpl implements DoctorantService {
         if (founded != null) {
             founded.get().setStructureDeRecherche(doctorant.getStructureDeRecherche());
             founded.get().setSpecialite(doctorant.getSpecialite());
-            founded.get().setDirecteurThese(doctorant.getDirecteurThese());
             doctorantDao.save((founded.get()));
             return 1;
         } else {
@@ -114,4 +113,13 @@ public class DoctorantServiceImpl implements DoctorantService {
         }
     }
 
+	@Override
+	public Doctorant findByUserEmail(String email) {
+		return doctorantDao.findByUserEmail(email);
+	}
+
+    
+    
+    
+ 
 }

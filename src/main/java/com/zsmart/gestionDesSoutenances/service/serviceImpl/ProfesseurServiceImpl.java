@@ -10,9 +10,11 @@ import com.zsmart.gestionDesSoutenances.bean.Jury;
 import com.zsmart.gestionDesSoutenances.bean.Professeur;
 import com.zsmart.gestionDesSoutenances.bean.Specialite;
 import com.zsmart.gestionDesSoutenances.dao.ProfesseurDao;
+import com.zsmart.gestionDesSoutenances.service.facade.JuryService;
 import com.zsmart.gestionDesSoutenances.service.facade.ProfesseurService;
 import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,8 @@ public class ProfesseurServiceImpl implements ProfesseurService{
     ProfesseurDao professeurDao;
     @Autowired
     SpecialiteService specialiteService;
-
+    @Autowired
+    JuryService  juryService;
    
 
     @Override
@@ -59,6 +62,18 @@ public class ProfesseurServiceImpl implements ProfesseurService{
     @Override
     public int deleteByCin(String cin) {
         return professeurDao.deleteByCin(cin);
+    }
+
+    @Override
+    public Professeur findByUserEmail(String email) {
+        return professeurDao.findByUserEmail(email);
+    }
+
+    @Override
+    public void addJuryToProfesseur(String cin, Long id) {
+        Optional<Jury> jury = juryService.findById(id);
+        Professeur professeur = professeurDao.findByCin(cin);
+        professeur.getJurys().add(jury.get());
     }
    
     

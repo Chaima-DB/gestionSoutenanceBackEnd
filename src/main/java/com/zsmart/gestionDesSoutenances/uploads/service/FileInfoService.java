@@ -8,6 +8,7 @@ package com.zsmart.gestionDesSoutenances.uploads.service;
 import com.zsmart.gestionDesSoutenances.uploads.model.FileInfo;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,5 +21,6 @@ public interface FileInfoService {
 
     public int save(MultipartFile file);
     public List<FileInfo> findAll();
+    FileInfo findByUrl(String url);
 
 }

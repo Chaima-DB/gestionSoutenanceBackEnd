@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 public interface RapporteurDao extends JpaRepository<Rapporteur, Long>{
    int deleteByProfesseurCin(String cin);
    int deleteByDoctorantCin(String cin);
-   Rapporteur findByDoctorantCin(String cin);
+   List<Rapporteur> findByDoctorantCin(String cin);
    List<Rapporteur> findByProfesseurCin(String cin);
+   List<Rapporteur> findByProfesseurUserEmail(String email);
 }

@@ -8,6 +8,7 @@ package com.zsmart.gestionDesSoutenances.service.facade;
 import com.zsmart.gestionDesSoutenances.bean.Jury;
 import com.zsmart.gestionDesSoutenances.bean.Soutenance;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -17,7 +18,7 @@ public interface JuryService {
 
     int save(Soutenance soutenance, List<Jury> jurys);
 
-    boolean validateJury(Soutenance soutenance, List<Jury> jurys);
+   boolean validateJury(Soutenance soutenance, List<Jury> jurys);
 
     List<Jury> findBySoutenanceReference(String reference);
 
@@ -26,5 +27,7 @@ public interface JuryService {
     List<Jury> findAll();
     
     int update(Jury jury, Long id);
+    
+    Optional<Jury> findById(Long id);
 
 }

@@ -43,7 +43,9 @@ public class ArticleServiceImpl implements ArticleService {
     DoctorantService doctorantService;
     @Autowired
     FilesStorageService filesStorageService;
-
+    @Autowired
+    FileInfoService fileInfoService ;
+    
     @Override
     public List<Article> findAll() {
         return articleDao.findAll();
@@ -72,12 +74,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int save(Article article) {
+
+    	Doctorant doctorant = new Doctorant();
+    	// Article art = new Article(article.getMotCle(), article.getIndexation(), article.getDoctorant(), article.getFile());
+
         FileInfo fileInfo = new FileInfo();
         Date  date = new Date();
         article.setDatePublicationArticle(date);
-        article.setDoctorant(article.getDoctorant());
+        article.setDoctorant(doctorantService.findByCin(doctorant.getCin()));
+        article.setFile(fileInfoService.findByUrl(fileInfo.getUrl()));
         article.setIndexation(article.getIndexation());
-        String ref = "art" + date.getTime();
+        String ref = "article" + date.getTime();
         article.setReference(ref);
         article.setFile(fileInfo);
         articleDao.save(article);

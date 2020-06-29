@@ -41,9 +41,6 @@ public class Doctorant extends Personnel {
     private Sujet sujet;
 
     @ManyToOne
-    private DirecteurThese directeurThese;
-
-    @ManyToOne
     private StructureDeRecherche structureDeRecherche;
 
     public Doctorant() {
@@ -90,12 +87,5 @@ public class Doctorant extends Personnel {
         this.structureDeRecherche = structureDeRecherche;
     }
 
-    public DirecteurThese getDirecteurThese() {
-        return directeurThese;
-    }
-
-    public void setDirecteurThese(DirecteurThese directeurThese) {
-        this.directeurThese = directeurThese;
-    }
-
+   
 }

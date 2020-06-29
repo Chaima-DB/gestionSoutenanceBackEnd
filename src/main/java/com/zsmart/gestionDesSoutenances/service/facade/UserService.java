@@ -9,12 +9,14 @@ import com.zsmart.gestionDesSoutenances.bean.User;
 
 public interface UserService extends UserDetailsService {
 
-	int save(User user);
+    int save(User user);
 
-	List<User> findAll();
+    List<User> findAll();
 
-	User findByEmail(String email);
-	public void addRoletouser(String email , String role);
-	ResponseEntity<?> authenticate(User user);
+    User findByEmail(String email);
+
+    public void addRoletouser(String email, String role);
+
+    ResponseEntity<?> authenticate(User user);
 
 }
