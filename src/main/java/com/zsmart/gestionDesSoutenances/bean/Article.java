@@ -5,17 +5,16 @@
  */
 package com.zsmart.gestionDesSoutenances.bean;
 
-import com.zsmart.gestionDesSoutenances.uploads.model.FileInfo;
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -25,80 +24,89 @@ import javax.persistence.Temporal;
 @Entity
 public class Article implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String reference;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date datePublicationArticle;
-    private String motCle;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String reference;
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date datePublicationArticle;
+	private String motCle;
 
-    @ManyToOne
-    Indexation indexation;
-    @ManyToOne
-    Doctorant doctorant;
-    
-    @OneToOne
-    FileInfo file;
+	@Column(name = "titre")
+	private String titre;
 
-    public Article() {
-    }
+	@Column(name = "description")
+	private String desciption;
 
-    public Long getId() {
-        return id;
-    }
+	@ManyToOne
+	private Indexation indexation;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "fichier")
+	private File file;
 
-    public Date getDatePublicationArticle() {
-        return datePublicationArticle;
-    }
+	public File getFile() {
+		return file;
+	}
 
-    public void setDatePublicationArticle(Date datePublicationArticle) {
-        this.datePublicationArticle = datePublicationArticle;
-    }
+	public void setFile(File file) {
+		this.file = file;
+	}
 
-    public String getMotCle() {
-        return motCle;
-    }
+	public String getTitre() {
+		return titre;
+	}
 
-    public void setMotCle(String motCle) {
-        this.motCle = motCle;
-    }
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
 
-    public Indexation getIndexation() {
-        return indexation;
-    }
+	public String getDesciption() {
+		return desciption;
+	}
 
-    public void setIndexation(Indexation indexation) {
-        this.indexation = indexation;
-    }
+	public void setDesciption(String desciption) {
+		this.desciption = desciption;
+	}
 
-    public Doctorant getDoctorant() {
-        return doctorant;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setDoctorant(Doctorant doctorant) {
-        this.doctorant = doctorant;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public FileInfo getFile() {
-        return file;
-    }
+	public Date getDatePublicationArticle() {
+		return datePublicationArticle;
+	}
 
-    public void setFile(FileInfo fileInfo) {
-        this.file = fileInfo;
-    }
+	public void setDatePublicationArticle(Date datePublicationArticle) {
+		this.datePublicationArticle = datePublicationArticle;
+	}
 
-    public String getReference() {
-        return reference;
-    }
+	public String getMotCle() {
+		return motCle;
+	}
 
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
+	public void setMotCle(String motCle) {
+		this.motCle = motCle;
+	}
+
+	public Indexation getIndexation() {
+		return indexation;
+	}
+
+	public void setIndexation(Indexation indexation) {
+		this.indexation = indexation;
+	}
+
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
 
 }

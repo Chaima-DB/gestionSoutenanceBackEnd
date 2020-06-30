@@ -120,9 +120,6 @@ public class DoctorantServiceImpl implements DoctorantService {
 	public Doctorant findByUserEmail(String email) {
 		return doctorantDao.findByUserEmail(email);
 	}
-
-    
-    
     
  
 }

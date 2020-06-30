@@ -1,6 +1,5 @@
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
-import java.awt.image.RescaleOp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,14 +70,11 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<?> authenticate(User user) {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		UserDetails userDetails = loadUserByUsername(user.getEmail());
+		UserDetails userDetails = new UserDetailsImpl(user);
 		String jwt = JwtUtil.generateToken(userDetails);
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		return userDao.findByEmail(email);
-	}
+	
 
 }

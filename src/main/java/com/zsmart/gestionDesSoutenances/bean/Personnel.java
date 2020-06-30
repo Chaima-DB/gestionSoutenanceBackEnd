@@ -8,6 +8,7 @@ package com.zsmart.gestionDesSoutenances.bean;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,8 @@ import javax.persistence.OneToOne;
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Personnel implements Serializable {
-
+	
+	@Column(nullable = false, unique = true)
 	protected String cin;
 	protected String nom;
 	protected String prenom;

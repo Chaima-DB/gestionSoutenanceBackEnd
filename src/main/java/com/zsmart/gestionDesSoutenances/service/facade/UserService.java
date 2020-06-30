@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.zsmart.gestionDesSoutenances.bean.User;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
 	int save(User user);
 

@@ -5,8 +5,9 @@
  */
 package com.zsmart.gestionDesSoutenances.service.facade;
 
-import com.zsmart.gestionDesSoutenances.bean.Article;
 import java.util.List;
+
+import com.zsmart.gestionDesSoutenances.bean.Article;
 
 /**
  *
@@ -15,10 +16,6 @@ import java.util.List;
 public interface ArticleService {
 
     List<Article> findAll();
-
-    List<Article> findByDoctorantCne(String cne);
-
-    List<Article> findByDoctorantCin(String cin);
 
     List<Article> findByIndexationLibelle(String libelle);
 

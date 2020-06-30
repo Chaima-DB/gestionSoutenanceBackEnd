@@ -3,10 +3,12 @@ package com.zsmart.gestionDesSoutenances.ws.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +16,6 @@ import com.zsmart.gestionDesSoutenances.bean.Article;
 import com.zsmart.gestionDesSoutenances.service.facade.ArticleService;
 
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Api
 @RestController
@@ -32,17 +32,6 @@ public class ArticleRest {
         return articleService.findAll();
     }
 
-    @GetMapping("/cne/{cne}")
-    public List<Article> findByDoctorantCne(@PathVariable String cne) {
-        return articleService.findByDoctorantCne(cne);
-    }
-
-    @GetMapping("/cin/{cin}")
-
-    public List<Article> findByDoctorantCin(@PathVariable String cin) {
-        return articleService.findByDoctorantCin(cin);
-    }
-
     @DeleteMapping("/reference/{reference}")
     public int deleteByReference(@PathVariable String reference) {
         return articleService.deleteByReference(reference);
@@ -57,5 +46,5 @@ public class ArticleRest {
     public int save(@RequestBody Article article) {
         return articleService.save(article);
     }
-
+    
 }

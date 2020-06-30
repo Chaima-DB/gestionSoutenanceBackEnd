@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,6 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		User user=(User) authResult.getPrincipal();
-		JwtUtil.generateTokenInHttpHeader(user, response);
+		JwtUtil.generateTokenInHttpHeader((UserDetails) user, response);
 	}
 }

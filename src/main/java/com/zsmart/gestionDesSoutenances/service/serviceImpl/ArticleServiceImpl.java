@@ -5,27 +5,21 @@
  */
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.zsmart.gestionDesSoutenances.bean.Article;
-import com.zsmart.gestionDesSoutenances.bean.Doctorant;
-import com.zsmart.gestionDesSoutenances.bean.Indexation;
 import com.zsmart.gestionDesSoutenances.dao.ArticleDao;
 import com.zsmart.gestionDesSoutenances.service.facade.ArticleService;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
 import com.zsmart.gestionDesSoutenances.service.facade.IndexationService;
-import com.zsmart.gestionDesSoutenances.uploads.model.FileInfo;
-import com.zsmart.gestionDesSoutenances.uploads.service.FileInfoService;
-import com.zsmart.gestionDesSoutenances.uploads.service.FilesStorageService;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
+import com.zsmart.gestionDesSoutenances.service.facade.SaveFileService;
 
 /**
  *
@@ -35,61 +29,42 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ArticleServiceImpl implements ArticleService {
 
-    @Autowired
-    ArticleDao articleDao;
-    @Autowired
-    IndexationService indexationService;
-    @Autowired
-    DoctorantService doctorantService;
-    @Autowired
-    FilesStorageService filesStorageService;
-    @Autowired
-    FileInfoService fileInfoService ;
-    
-    @Override
-    public List<Article> findAll() {
-        return articleDao.findAll();
-    }
+	@Autowired
+	ArticleDao articleDao;
+	@Autowired
+	IndexationService indexationService;
+	@Autowired
+	DoctorantService doctorantService;
+	@Autowired
+	SaveFileService saveFileService;
+	
+	@Override
+	public List<Article> findAll() {
+		return articleDao.findAll();
+	}
 
-    @Override
-    public List<Article> findByDoctorantCne(String cne) {
-        return articleDao.findByDoctorantCne(cne);
-    }
+	@Transactional
+	@Override
+	public int deleteByReference(String reference) {
+		return articleDao.deleteByReference(reference);
+	}
 
-    @Override
-    public List<Article> findByDoctorantCin(String cin) {
-        return articleDao.findByDoctorantCin(cin);
-    }
+	@Override
+	public List<Article> findByIndexationLibelle(String libelle) {
+		return articleDao.findByIndexationLibelle(libelle);
+	}
 
-    @Transactional
-    @Override
-    public int deleteByReference(String reference) {
-        return articleDao.deleteByReference(reference);
-    }
+	@Override
+	public int save(Article article) {
+		Date date = new Date();
+		article.setDatePublicationArticle(date);
+		// saveFileService.handleFileUploadBac((MultipartFile) article.getFile());
+		article.setIndexation(article.getIndexation());
+		String ref = "article_" + date.getTime();
+		article.setReference(ref);
+		articleDao.save(article);
 
-    @Override
-    public List<Article> findByIndexationLibelle(String libelle) {
-        return articleDao.findByIndexationLibelle(libelle);
-    }
-
-    @Override
-    public int save(Article article) {
-
-    	Doctorant doctorant = new Doctorant();
-    	// Article art = new Article(article.getMotCle(), article.getIndexation(), article.getDoctorant(), article.getFile());
-
-        FileInfo fileInfo = new FileInfo();
-        Date  date = new Date();
-        article.setDatePublicationArticle(date);
-        article.setDoctorant(doctorantService.findByCin(doctorant.getCin()));
-        article.setFile(fileInfoService.findByUrl(fileInfo.getUrl()));
-        article.setIndexation(article.getIndexation());
-        String ref = "article" + date.getTime();
-        article.setReference(ref);
-        article.setFile(fileInfo);
-        articleDao.save(article);
-        
-        return 1;
-    }
+		return 1;
+	}
 
 }
