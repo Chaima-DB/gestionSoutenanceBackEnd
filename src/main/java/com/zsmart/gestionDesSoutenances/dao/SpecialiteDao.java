@@ -5,8 +5,6 @@
  */
 package com.zsmart.gestionDesSoutenances.dao;
 
-
-import com.zsmart.gestionDesSoutenances.bean.Etablissement;
 import com.zsmart.gestionDesSoutenances.bean.Specialite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,7 +14,9 @@ import org.springframework.stereotype.Repository;
  * @author HP
  */
 @Repository
-public interface SpecialiteDao extends JpaRepository<Specialite, Long>{
-   int deleteByReference(String reference);
-   Specialite findByReference(String reference);
+public interface SpecialiteDao extends JpaRepository<Specialite, Long> {
+
+    int deleteByReference(String reference);
+
+    Specialite findByReference(String reference);
 }

@@ -52,7 +52,7 @@ public class JuryRest {
     }
     
     @PutMapping("/id/{id}")
-    public int update(Jury jury, Long id) {
+    public int update(@RequestBody Jury jury,@PathVariable Long id) {
         return juryService.update(jury, id);
     }
 

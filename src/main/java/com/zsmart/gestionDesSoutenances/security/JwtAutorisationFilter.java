@@ -1,5 +1,6 @@
 package com.zsmart.gestionDesSoutenances.security;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,8 +21,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.MalformedJwtException;
 
+
 public class JwtAutorisationFilter extends OncePerRequestFilter {
 
+   
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {

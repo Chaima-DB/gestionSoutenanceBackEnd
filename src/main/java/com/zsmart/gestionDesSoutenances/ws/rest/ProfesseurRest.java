@@ -43,6 +43,11 @@ public class ProfesseurRest {
     public int deleteByCin(@PathVariable String cin) {
         return professeurService.deleteByCin(cin);
     }
+@GetMapping("/email/{email}")
+    public Professeur findByUserEmail(@PathVariable String email) {
+        return professeurService.findByUserEmail(email);
+    }
+    
     
     
     

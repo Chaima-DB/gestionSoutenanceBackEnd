@@ -7,10 +7,12 @@ package com.zsmart.gestionDesSoutenances.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -28,9 +30,21 @@ public class Professeur extends Personnel {
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDernierePublication;
+    
+    @OneToMany
+    private List<Jury> jurys;
 
+    public List<Jury> getJurys() {
+        return jurys;
+    }
+
+    public void setJurys(List<Jury> jurys) {
+        this.jurys = jurys;
+    }
+    
+    
     public Professeur() {
-        //super()
+        super();
     }
 
     public Long getId() {

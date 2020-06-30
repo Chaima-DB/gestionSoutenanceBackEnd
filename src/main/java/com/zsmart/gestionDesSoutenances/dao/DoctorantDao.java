@@ -5,7 +5,6 @@
  */
 package com.zsmart.gestionDesSoutenances.dao;
 
-
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -27,6 +27,7 @@ public class Rapporteur implements Serializable {
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateAffectation;
+    private String avis;
 
     @ManyToOne
     private Professeur professeur;
@@ -68,6 +69,14 @@ public class Rapporteur implements Serializable {
 
     public void setDateAffectation(Date dateAffectation) {
         this.dateAffectation = dateAffectation;
+    }
+
+    public String getAvis() {
+        return avis;
+    }
+
+    public void setAvis(String avis) {
+        this.avis = avis;
     }
 
 }

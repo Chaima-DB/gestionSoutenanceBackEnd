@@ -14,6 +14,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.DirecteurTheseService;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
 import com.zsmart.gestionDesSoutenances.service.facade.ProfesseurService;
 import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
+import com.zsmart.gestionDesSoutenances.service.facade.UserService;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -82,17 +83,17 @@ public class DirecteurTheseServiceImpl implements DirecteurTheseService {
     }
 
     @Override
-    public List<DirecteurThese> findByProfesseurCin(String cin) {
-        return directeurTheseDao.findByProfesseurCin(cin);
-    }
-
-    @Override
     public int update(DirecteurThese directeurThese, Long id) {
         Optional<DirecteurThese> founded = directeurTheseDao.findById(id);
         founded.get().setProfesseur(directeurThese.getProfesseur());
         founded.get().setDoctorant(directeurThese.getDoctorant());
         directeurTheseDao.save(directeurThese);
         return 1;
+    }
+
+    @Override
+    public List<DirecteurThese> findByProfesseurUserEmail(String email) {
+        return directeurTheseDao.findByProfesseurUserEmail(email);
     }
 
 }

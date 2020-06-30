@@ -6,7 +6,6 @@
 package com.zsmart.gestionDesSoutenances.dao;
 
 
-import com.zsmart.gestionDesSoutenances.bean.DirecteurThese;
 import com.zsmart.gestionDesSoutenances.bean.Rapporteur;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +19,7 @@ import org.springframework.stereotype.Repository;
 public interface RapporteurDao extends JpaRepository<Rapporteur, Long>{
    int deleteByProfesseurCin(String cin);
    int deleteByDoctorantCin(String cin);
-   DirecteurThese findByDoctorantCin(String cin);
-   List<DirecteurThese> findByProfesseurCin(String cin);
+   List<Rapporteur> findByDoctorantCin(String cin);
+   List<Rapporteur> findByProfesseurCin(String cin);
+   List<Rapporteur> findByProfesseurUserEmail(String email);
 }

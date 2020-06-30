@@ -21,4 +21,10 @@ public interface ProfesseurService {
     int save(Professeur professeur);
 
     int deleteByCin(String cin);
+    
+    Professeur findByUserEmail(String email);
+    
+    public void addJuryToProfesseur(String cin, Long id);
+    
+    
 }
