@@ -6,11 +6,13 @@
 package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
+import com.zsmart.gestionDesSoutenances.bean.Rapporteur;
 import com.zsmart.gestionDesSoutenances.bean.Specialite;
 import com.zsmart.gestionDesSoutenances.bean.StructureDeRecherche;
 import com.zsmart.gestionDesSoutenances.dao.DoctorantDao;
 import com.zsmart.gestionDesSoutenances.service.facade.DirecteurTheseService;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
+import com.zsmart.gestionDesSoutenances.service.facade.RapporteurService;
 import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import com.zsmart.gestionDesSoutenances.service.facade.StructureDeRechercheService;
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
@@ -21,6 +23,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -41,7 +44,8 @@ public class DoctorantServiceImpl implements DoctorantService {
     SpecialiteService specialiteService;
     @Autowired
     UserService userService;
-
+    @Autowired
+    RapporteurService rapporteurService;
     @Override
     public List<Doctorant> findAll() {
         return doctorantDao.findAll();
@@ -117,6 +121,38 @@ public class DoctorantServiceImpl implements DoctorantService {
 	public Doctorant findByUserEmail(String email) {
 		return doctorantDao.findByUserEmail(email);
 	}
+
+    @Override
+    public int updateAddRapporteurs(Doctorant doctorant, List<Rapporteur> rapporteurs) {
+            
+       if (!rapporteurService.validateRapporteur(doctorant, rapporteurs)){
+            return -4;
+        } else {
+//           rapporteurService.save(doctorant, rapporteurs);
+            return 1;
+
+        }
+    }
+
+    @Override
+    public List<Doctorant> findByNv(boolean nv) {
+        return doctorantDao.findByNv(nv);
+    }
+
+    @Override
+    public int updateInscription(Doctorant doctorant, Long id) {
+        Optional<Doctorant> founded = doctorantDao.findById(id);
+        if (founded != null) {
+            founded.get().setNv(true);
+            doctorantDao.save((founded.get()));
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    
+    
     
  
 }

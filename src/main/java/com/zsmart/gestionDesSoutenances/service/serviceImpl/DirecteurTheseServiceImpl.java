@@ -58,7 +58,6 @@ public class DirecteurTheseServiceImpl implements DirecteurTheseService {
         } else {
             directeurThese.setDoctorant(doctorant);
             directeurThese.setProfesseur(professeur);
-            directeurThese.setDateDebutEncadrement(new Date());
             directeurTheseDao.save(directeurThese);
             return 1;
         }

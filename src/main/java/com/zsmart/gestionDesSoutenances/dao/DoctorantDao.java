@@ -6,6 +6,7 @@
 package com.zsmart.gestionDesSoutenances.dao;
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +20,6 @@ public interface DoctorantDao extends JpaRepository<Doctorant, Long>{
  Doctorant findByCne(String cne);
  int deleteByCin(String cin);
  Doctorant findByUserEmail(String email);
+ List<Doctorant> findByNv(boolean nv);
  
 }

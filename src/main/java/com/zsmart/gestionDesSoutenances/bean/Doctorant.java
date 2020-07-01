@@ -5,12 +5,17 @@
  */
 package com.zsmart.gestionDesSoutenances.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -23,11 +28,11 @@ import lombok.Setter;
  *
  * @author HP
  */
+@NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@Entity
 public class Doctorant extends Personnel {
 
 	private static final long serialVersionUID = 1L;
@@ -35,13 +40,17 @@ public class Doctorant extends Personnel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String cne;
+        private boolean nv;
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateInscription;
 
-	@OneToOne
-	private Sujet sujet;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Sujet sujet;
 
-	@ManyToOne
-	private StructureDeRecherche structureDeRecherche;
-
+    @ManyToOne
+    private StructureDeRecherche structureDeRecherche;
+    
+    @OneToMany(mappedBy = "doctorant")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Rapporteur> rapporteurs;   
 }

@@ -1,5 +1,6 @@
 package com.zsmart.gestionDesSoutenances.ws.rest;
 
+import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,11 @@ public class RapporteurRest {
 
     @Autowired
     RapporteurService rapporteurService;
-
-    @DeleteMapping("/cinProf/{cin}")
-    public int deleteByProfesseurCin(@PathVariable String cin) {
-        return rapporteurService.deleteByProfesseurCin(cin);
+    
+    @DeleteMapping("/profCin/{profCin}/docCin/{docCin}")
+    public int deleteByProfesseurCinAndDoctorantCin(String profCin, String docCin) {
+        return rapporteurService.deleteByProfesseurCinAndDoctorantCin(profCin, docCin);
     }
-
     @DeleteMapping("/cinDoc/{cin}")
     public int deleteByDoctorantCin(@PathVariable String cin) {
         return rapporteurService.deleteByDoctorantCin(cin);
@@ -53,11 +53,6 @@ public class RapporteurRest {
         return rapporteurService.findAll();
     }
 
-    @PostMapping("/")
-    public int save(@RequestBody List<Rapporteur> rapporteurs) {
-        return rapporteurService.save(rapporteurs);
-    }
-
     @PutMapping("/id/{id}")
     public int update(@RequestBody Rapporteur rapporteur, @PathVariable Long id) {
         return rapporteurService.update(rapporteur, id);
@@ -66,6 +61,10 @@ public class RapporteurRest {
     @GetMapping("/UserEmail/{email}")
     public List<Rapporteur> findByProfesseurUserEmail(String email) {
         return rapporteurService.findByProfesseurUserEmail(email);
+    }
+    @PostMapping("/")
+    public int save(@RequestBody List<Rapporteur> rapporteurs) {
+        return rapporteurService.save(rapporteurs);
     }
 
 }

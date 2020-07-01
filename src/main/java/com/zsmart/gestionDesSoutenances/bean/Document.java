@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 //import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
@@ -31,7 +32,7 @@ public class Document implements Serializable {
     @Lob
     protected  byte[] pdf;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     protected Doctorant doctorant;
 
     public Document() {
