@@ -12,10 +12,13 @@ import com.zsmart.gestionDesSoutenances.bean.Role;
 import com.zsmart.gestionDesSoutenances.bean.User;
 
 public class UserDetailsImpl implements UserDetails {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8058788930038933670L;
 	private User user;
-	
-	
+
 	public UserDetailsImpl(User user) {
 		super();
 		this.user = user;
@@ -23,9 +26,9 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		final List<GrantedAuthority> authorities = new ArrayList<>();
 		for (final Role role : user.getRoles())
-		authorities.add(new SimpleGrantedAuthority(role.getTitre()));
+			authorities.add(new SimpleGrantedAuthority(role.getTitre()));
 		return authorities;
 	}
 

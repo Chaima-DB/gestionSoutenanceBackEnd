@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,10 +43,7 @@ public class User implements Serializable {
 	@Column(name = "isEnabled", columnDefinition = "default true")
 	private Boolean isEnabled = true;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST,
-			CascadeType.REMOVE },fetch = FetchType.EAGER)
-      
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();
-        
 
 }
