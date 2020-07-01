@@ -9,7 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +23,8 @@ import com.zsmart.gestionDesSoutenances.service.facade.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-        @Autowired
-        UserDao userDao;
+	@Autowired
+	UserDao userDao;
 	@Autowired
 	RoleService roleService;
 
@@ -33,6 +33,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private UserDetailsServiceImpl userDetailsServiceImpl;
 
 	@Override
 	public User findByEmail(String email) {
@@ -51,14 +54,13 @@ public class UserServiceImpl implements UserService {
 			return 1;
 		}
 	}
-	
 
 	@Override
 	public void addRoletouser(String email, String role) {
 		Role roles = roleService.findByTitre(role);
 		User user = userDao.findByEmail(email);
 		user.getRoles().add(roles);
-		
+
 	}
 
 	@Override
@@ -68,13 +70,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ResponseEntity<?> authenticate(User user) {
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		UserDetails userDetails = new UserDetailsImpl(user);
+		UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(user.getEmail());
 		String jwt = JwtUtil.generateToken(userDetails);
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
-
-	
 
 }
