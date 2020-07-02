@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zsmart.gestionDesSoutenances.bean.Article;
+import com.zsmart.gestionDesSoutenances.bean.Indexation;
 import com.zsmart.gestionDesSoutenances.dao.ArticleDao;
 import com.zsmart.gestionDesSoutenances.service.facade.ArticleService;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
@@ -37,7 +38,7 @@ public class ArticleServiceImpl implements ArticleService {
 	DoctorantService doctorantService;
 	@Autowired
 	SaveFileService saveFileService;
-	
+
 	@Override
 	public List<Article> findAll() {
 		return articleDao.findAll();
@@ -56,15 +57,15 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public int save(Article article) {
+		Indexation indexation = indexationService.findByLibelle(article.getIndexation().getLibelle());
 		Date date = new Date();
 		article.setDatePublicationArticle(date);
-		// saveFileService.handleFileUploadBac((MultipartFile) article.getFile());
-		article.setIndexation(article.getIndexation());
+		article.setIndexation(indexation);
 		String ref = "article_" + date.getTime();
 		article.setReference(ref);
 		articleDao.save(article);
-
 		return 1;
+
 	}
 
 }
