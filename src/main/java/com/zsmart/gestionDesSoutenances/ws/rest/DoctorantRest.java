@@ -63,9 +63,22 @@ public class DoctorantRest {
         return doctorantService.update(doctorant, id);
     }
 
-    @PutMapping("/doctorat/id/{id}")
+    @PutMapping("/update/id/{id}")
     public int updateDoctorat(@RequestBody Doctorant doctorant, @PathVariable Long id) {
         return doctorantService.updateDoctorat(doctorant, id);
     }
+    @PostMapping("/add/")
+    public int updateAddRapporteurs(@RequestBody Doctorant doctorant) {
+        return doctorantService.updateAddRapporteurs(doctorant, doctorant.getRapporteurs());
+    }
+    @GetMapping("/nv/{nv}")
+    public List<Doctorant> findByNv(@PathVariable boolean nv) {
+        return doctorantService.findByNv(nv);
+    }
+    @PutMapping("/updateInscription/id/{id}")
+    public int updateInscription(@RequestBody Doctorant doctorant, @PathVariable Long id) {
+        return doctorantService.updateInscription(doctorant, id);
+    }
+    
 
 }

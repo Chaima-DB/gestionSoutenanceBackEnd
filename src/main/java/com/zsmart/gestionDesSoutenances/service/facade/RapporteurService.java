@@ -5,6 +5,7 @@
  */
 package com.zsmart.gestionDesSoutenances.service.facade;
 
+import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import com.zsmart.gestionDesSoutenances.bean.Rapporteur;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface RapporteurService {
 
-    int deleteByProfesseurCin(String cin);
+    int deleteByProfesseurCinAndDoctorantCin(String profCin, String docCin);
 
     int deleteByDoctorantCin(String cin);
 
@@ -29,5 +30,7 @@ public interface RapporteurService {
     int update(Rapporteur rapporteur, Long id);
 
     List<Rapporteur> findByProfesseurUserEmail(String email);
+    
+    boolean validateRapporteur(Doctorant doctorant, List<Rapporteur> rapporteurs);
 
 }

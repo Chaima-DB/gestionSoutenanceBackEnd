@@ -26,10 +26,10 @@ public class Jury implements Serializable{
     private Long id;
     private String avis;
     
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.REMOVE)
     Professeur professeur; 
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     Soutenance soutenance;
     
     

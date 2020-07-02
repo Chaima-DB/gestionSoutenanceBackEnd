@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,7 @@ public class Soutenance implements Serializable {
     private String heureSoutenance;
     private String resultatFinal;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Doctorant doctorant;
 
     @OneToMany(mappedBy = "soutenance")

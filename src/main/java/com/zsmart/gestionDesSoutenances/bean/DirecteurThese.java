@@ -7,6 +7,7 @@ package com.zsmart.gestionDesSoutenances.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,10 +30,10 @@ public class DirecteurThese implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebutEncadrement;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Professeur professeur;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Doctorant doctorant;
 
     public DirecteurThese() {

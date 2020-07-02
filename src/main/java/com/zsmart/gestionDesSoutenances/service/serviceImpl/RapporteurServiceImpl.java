@@ -8,7 +8,6 @@ package com.zsmart.gestionDesSoutenances.service.serviceImpl;
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import com.zsmart.gestionDesSoutenances.bean.Professeur;
 import com.zsmart.gestionDesSoutenances.bean.Rapporteur;
-import com.zsmart.gestionDesSoutenances.bean.Specialite;
 import com.zsmart.gestionDesSoutenances.dao.RapporteurDao;
 import com.zsmart.gestionDesSoutenances.service.facade.DoctorantService;
 import com.zsmart.gestionDesSoutenances.service.facade.ProfesseurService;
@@ -17,6 +16,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +39,8 @@ public class RapporteurServiceImpl implements RapporteurService {
     
     @Transactional
     @Override
-    public int deleteByProfesseurCin(String cin) {
-        return rapporteurDao.deleteByProfesseurCin(cin);
+    public int deleteByProfesseurCinAndDoctorantCin(String prof, String doc) {
+        return rapporteurDao.deleteByProfesseurCinAndDoctorantCin(prof, doc);
     }
     @Transactional
     @Override
@@ -62,9 +62,13 @@ public class RapporteurServiceImpl implements RapporteurService {
     public List<Rapporteur> findAll() {
         return rapporteurDao.findAll();
     }
-
+@Override
+    public boolean validateRapporteur(Doctorant doctorant, List<Rapporteur> rapporteurs) {
+           List<Rapporteur> valideRapporteur = rapporteurs.stream().filter(j -> professeurService.findByCin(j.getProfesseur().getCin()) != null ).collect(Collectors.toList());
+        return valideRapporteur.size() == rapporteurs.size();
+    }
     @Override
-    public int save(List<Rapporteur> rapporteurs) {
+    public int save(List<Rapporteur> rapporteurs ) {
         rapporteurs.forEach(r -> {
             Professeur professeur = professeurService.findByCin(r.getProfesseur().getCin());
             Doctorant doctorant = doctorantService.findByCin(r.getDoctorant().getCin());

@@ -6,6 +6,7 @@
 package com.zsmart.gestionDesSoutenances.service.facade;
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
+import com.zsmart.gestionDesSoutenances.bean.Rapporteur;
 import java.util.List;
 
 /**
@@ -28,5 +29,11 @@ public interface DoctorantService {
 
     int updateDoctorat(Doctorant doctorant, Long id);
     
+     int updateAddRapporteurs(Doctorant doctorant, List<Rapporteur> rapporteurs );
+    
     Doctorant findByUserEmail(String email);
+    
+     List<Doctorant> findByNv(boolean nv);
+     
+     int updateInscription(Doctorant doctorant, Long id);
 }
