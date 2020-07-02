@@ -17,6 +17,7 @@ import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
 import com.zsmart.gestionDesSoutenances.service.facade.StructureDeRechercheService;
 import com.zsmart.gestionDesSoutenances.service.facade.SujetService;
 import com.zsmart.gestionDesSoutenances.service.facade.UserService;
+import java.util.Date;
 
 import java.util.List;
 import java.util.Optional;
@@ -144,6 +145,7 @@ public class DoctorantServiceImpl implements DoctorantService {
         Optional<Doctorant> founded = doctorantDao.findById(id);
         if (founded != null) {
             founded.get().setNv(true);
+            founded.get().setDateInscription(new Date());
             doctorantDao.save((founded.get()));
             return 1;
         } else {

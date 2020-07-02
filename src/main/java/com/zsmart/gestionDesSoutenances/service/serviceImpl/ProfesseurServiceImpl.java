@@ -13,6 +13,7 @@ import com.zsmart.gestionDesSoutenances.dao.ProfesseurDao;
 import com.zsmart.gestionDesSoutenances.service.facade.JuryService;
 import com.zsmart.gestionDesSoutenances.service.facade.ProfesseurService;
 import com.zsmart.gestionDesSoutenances.service.facade.SpecialiteService;
+import com.zsmart.gestionDesSoutenances.service.facade.UserService;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -28,6 +29,8 @@ public class ProfesseurServiceImpl implements ProfesseurService{
 
     @Autowired
     ProfesseurDao professeurDao;
+    @Autowired
+    UserService userService;
     @Autowired
     SpecialiteService specialiteService;
     @Autowired
@@ -49,6 +52,8 @@ public class ProfesseurServiceImpl implements ProfesseurService{
             return -2;
         }else{
             professeur.setSpecialite(sp);
+            userService.save(professeur.getUser());
+            userService.addRoletouser(professeur.getUser().getEmail(), "ROLE_PROF");
             professeurDao.save(professeur);
         return 1;
         }
