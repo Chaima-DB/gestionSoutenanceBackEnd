@@ -16,6 +16,8 @@ import java.util.List;
 public interface RapporteurService {
 
     int deleteByProfesseurCinAndDoctorantCin(String profCin, String docCin);
+    
+    Rapporteur findByProfesseurCinAndDoctorantCin(String profCin, String docCin);
 
     int deleteByDoctorantCin(String cin);
 

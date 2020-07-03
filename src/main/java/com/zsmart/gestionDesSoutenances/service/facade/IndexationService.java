@@ -17,6 +17,8 @@ public interface IndexationService {
     List<Indexation> findAll();
 
     Indexation findByLibelle(String libelle);
+    
+    Indexation findByReference(String reference);
 
     int save(Indexation indexation);
 }

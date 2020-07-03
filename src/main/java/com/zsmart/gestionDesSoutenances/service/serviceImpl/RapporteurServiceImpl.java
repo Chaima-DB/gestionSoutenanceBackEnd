@@ -69,13 +69,26 @@ public class RapporteurServiceImpl implements RapporteurService {
     }
     @Override
     public int save(List<Rapporteur> rapporteurs ) {
+        
         rapporteurs.forEach(r -> {
+            Rapporteur founded = rapporteurDao.findByProfesseurCinAndDoctorantCin(r.getProfesseur().getCin(), r.getDoctorant().getCin());
+            if(founded != r){
             Professeur professeur = professeurService.findByCin(r.getProfesseur().getCin());
             Doctorant doctorant = doctorantService.findByCin(r.getDoctorant().getCin());
-            r.setProfesseur(professeur);
             r.setDoctorant(doctorant);
+            r.setProfesseur(professeur);
             r.setDateAffectation(new Date());
             rapporteurDao.save(r);
+            
+            }else{
+            rapporteurDao.deleteByProfesseurCinAndDoctorantCin(r.getProfesseur().getCin(), r.getDoctorant().getCin());
+            Professeur professeur = professeurService.findByCin(r.getProfesseur().getCin());
+            Doctorant doctorant = doctorantService.findByCin(r.getDoctorant().getCin());
+            r.setDoctorant(doctorant);
+             r.setProfesseur(professeur);
+            r.setDateAffectation(new Date());
+            rapporteurDao.save(r);
+            }
         }
         );
         return 1;
@@ -96,6 +109,11 @@ public class RapporteurServiceImpl implements RapporteurService {
     @Override
     public List<Rapporteur> findByProfesseurUserEmail(String email) {
         return rapporteurDao.findByProfesseurUserEmail(email);
+    }
+
+    @Override
+    public Rapporteur findByProfesseurCinAndDoctorantCin(String profCin, String docCin) {
+        return rapporteurDao.findByProfesseurCinAndDoctorantCin(profCin, docCin);
     }
 
    

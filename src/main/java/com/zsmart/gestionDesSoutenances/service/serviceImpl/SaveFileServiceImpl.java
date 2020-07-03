@@ -18,7 +18,6 @@ import com.zsmart.gestionDesSoutenances.service.facade.SaveFileService;
 public class SaveFileServiceImpl implements SaveFileService {
 	
 	Article article = new Article();
-	
 	List<String> files = new ArrayList<String>();
 // Path to save the file
 	private final Path rootLocation = Paths.get("uploads");

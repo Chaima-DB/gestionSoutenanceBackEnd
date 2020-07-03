@@ -17,4 +17,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IndexationDao extends JpaRepository<Indexation, Long>{
    Indexation findByLibelle(String libelle);
+   Indexation findByReference(String reference);
 }

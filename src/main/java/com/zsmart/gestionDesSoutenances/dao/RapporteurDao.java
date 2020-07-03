@@ -23,4 +23,5 @@ public interface RapporteurDao extends JpaRepository<Rapporteur, Long>{
    List<Rapporteur> findByProfesseurCin(String cin);
    List<Rapporteur> findByProfesseurUserEmail(String email);
    int deleteByProfesseurCinAndDoctorantCin(String profCin, String docCin);
+   Rapporteur findByProfesseurCinAndDoctorantCin(String profCin, String docCin);
 }

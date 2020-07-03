@@ -39,13 +39,19 @@ public class IndexationServiceImpl implements IndexationService{
 
     @Override
     public int save(Indexation indexation) {
-        Indexation indexationFound = indexationDao.findByLibelle(indexation.getLibelle());
+        Indexation indexationFound = indexationDao.findByReference(indexation.getReference());
         if(indexationFound != null) {
         return -1;
         }else {
+            indexation.setReference("index_" + new Date().getTime());
             indexationDao.save(indexation);
             return 1;
         }
+    }
+
+    @Override
+    public Indexation findByReference(String reference) {
+        return indexationDao.findByReference(reference);
     }
 
        

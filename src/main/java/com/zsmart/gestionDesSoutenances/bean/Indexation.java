@@ -23,6 +23,7 @@ public class Indexation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle;
+    private String reference;
 
     
     public Indexation(String libelle) {
@@ -49,5 +50,13 @@ public class Indexation implements Serializable {
         this.libelle = libelle;
     }
 
+    public String getReference() {
+        return reference;
+    }
 
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    
 }

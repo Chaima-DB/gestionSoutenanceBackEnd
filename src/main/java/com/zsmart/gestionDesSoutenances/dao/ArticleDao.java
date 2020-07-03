@@ -17,9 +17,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleDao extends JpaRepository<Article, Long> {
 
-	Article findByReference(String reference);
+    Article findByReference(String reference);
 
-	int deleteByReference(String reference);
+    List<Article> findByType(String type);
 
-	List<Article> findByIndexationLibelle(String libelle);
+    List<Article> findByTypeAndDoctorantCin(String type, String cin);
+
+    int deleteByReference(String reference);
+
+    List<Article> findByIndexationLibelle(String libelle);
 }

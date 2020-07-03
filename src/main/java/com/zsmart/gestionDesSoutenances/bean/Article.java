@@ -32,6 +32,7 @@ public class Article implements Serializable {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date datePublicationArticle;
 	private String motCle;
+        private String type;
 
 	@Column(name = "titre")
 	private String titre;
@@ -41,6 +42,9 @@ public class Article implements Serializable {
 
 	@ManyToOne
 	private Indexation indexation;
+        
+	@ManyToOne
+	private Doctorant doctorant;
 
 	@Column(name = "fichier")
 	private File file;
@@ -108,5 +112,23 @@ public class Article implements Serializable {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+
+        public Doctorant getDoctorant() {
+        return doctorant;
+        }
+
+        public void setDoctorant(Doctorant doctorant) {
+        this.doctorant = doctorant;
+        }
+
+         public String getType() {
+        return type;
+        }
+
+        public void setType(String type) {
+        this.type = type;
+        }
+        
+        
 
 }

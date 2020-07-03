@@ -30,7 +30,7 @@ public class RapporteurRest {
     RapporteurService rapporteurService;
     
     @DeleteMapping("/profCin/{profCin}/docCin/{docCin}")
-    public int deleteByProfesseurCinAndDoctorantCin(String profCin, String docCin) {
+    public int deleteByProfesseurCinAndDoctorantCin(@PathVariable String profCin,@PathVariable String docCin) {
         return rapporteurService.deleteByProfesseurCinAndDoctorantCin(profCin, docCin);
     }
     @DeleteMapping("/cinDoc/{cin}")
@@ -59,12 +59,18 @@ public class RapporteurRest {
     }
 
     @GetMapping("/UserEmail/{email}")
-    public List<Rapporteur> findByProfesseurUserEmail(String email) {
+    public List<Rapporteur> findByProfesseurUserEmail(@PathVariable String email) {
         return rapporteurService.findByProfesseurUserEmail(email);
     }
     @PostMapping("/")
     public int save(@RequestBody List<Rapporteur> rapporteurs) {
         return rapporteurService.save(rapporteurs);
     }
+    @PostMapping("/profCin/{profCin}/docCin/{docCin}")
+    public Rapporteur findByProfesseurCinAndDoctorantCin(@PathVariable String profCin,@PathVariable String docCin) {
+        return rapporteurService.findByProfesseurCinAndDoctorantCin(profCin, docCin);
+    }
+    
+    
 
 }

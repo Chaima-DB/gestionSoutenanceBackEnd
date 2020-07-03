@@ -30,9 +30,9 @@ public class Rapporteur implements Serializable {
     private Date dateAffectation;
     private String avis;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Professeur professeur;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Doctorant doctorant;
 
     public Rapporteur() {

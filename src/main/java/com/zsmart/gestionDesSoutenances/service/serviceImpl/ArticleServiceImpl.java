@@ -12,9 +12,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.zsmart.gestionDesSoutenances.bean.Article;
+import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import com.zsmart.gestionDesSoutenances.bean.Indexation;
 import com.zsmart.gestionDesSoutenances.dao.ArticleDao;
 import com.zsmart.gestionDesSoutenances.service.facade.ArticleService;
@@ -57,10 +57,13 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public int save(Article article) {
-		Indexation indexation = indexationService.findByLibelle(article.getIndexation().getLibelle());
+            Indexation indexation = indexationService.findByReference(article.getIndexation().getReference());
+            Doctorant doctorant = doctorantService.findByUserEmail(article.getDoctorant().getUser().getEmail());
+            
 		Date date = new Date();
 		article.setDatePublicationArticle(date);
 		article.setIndexation(indexation);
+                article.setDoctorant(doctorant);
 		String ref = "article_" + date.getTime();
 		article.setReference(ref);
 		articleDao.save(article);
