@@ -40,7 +40,7 @@ public class Doctorant extends Personnel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String cne;
-        private boolean nv;
+        private int nv;
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateInscription;
 

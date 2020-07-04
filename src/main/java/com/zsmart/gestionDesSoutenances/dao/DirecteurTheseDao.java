@@ -20,6 +20,7 @@ public interface DirecteurTheseDao extends JpaRepository<DirecteurThese, Long>{
    int deleteByProfesseurCin(String cin);
    int deleteByDoctorantCin(String cin);
    DirecteurThese findByDoctorantCin(String cin);
+   DirecteurThese findByDoctorantUserEmail(String email);
    List<DirecteurThese> findByProfesseurCin(String cin);
    List<DirecteurThese> findByProfesseurUserEmail(String email);
 }

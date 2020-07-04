@@ -30,10 +30,10 @@ public class DirecteurThese implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebutEncadrement;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Professeur professeur;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne
     private Doctorant doctorant;
 
     public DirecteurThese() {

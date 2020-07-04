@@ -43,7 +43,7 @@ public class User implements Serializable {
 	@Column(name = "isEnabled", columnDefinition = "default true")
 	private Boolean isEnabled = true;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();
 
 }

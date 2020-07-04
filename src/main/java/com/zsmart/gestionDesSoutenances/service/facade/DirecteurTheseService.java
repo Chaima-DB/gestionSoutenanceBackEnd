@@ -25,6 +25,8 @@ public interface DirecteurTheseService {
     int deleteByDoctorantCin(String cin);
 
     DirecteurThese findByDoctorantCin(String cin);
+    
+    DirecteurThese findByDoctorantUserEmail(String email);
 
     List<DirecteurThese> findByProfesseurUserEmail(String email);
 

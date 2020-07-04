@@ -47,6 +47,10 @@ public class DirecteurTheseRest {
     public DirecteurThese findByDoctorantCin(@PathVariable String cin) {
         return directeurTheseService.findByDoctorantCin(cin);
     }
+    @GetMapping("/{email}")
+    public DirecteurThese findByDoctorantUserEmail(@PathVariable String email) {
+        return directeurTheseService.findByDoctorantUserEmail(email);
+    }
 
 
     @PostMapping("/")

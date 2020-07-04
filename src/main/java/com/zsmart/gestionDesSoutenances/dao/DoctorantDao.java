@@ -20,6 +20,6 @@ public interface DoctorantDao extends JpaRepository<Doctorant, Long>{
  Doctorant findByCne(String cne);
  int deleteByCin(String cin);
  Doctorant findByUserEmail(String email);
- List<Doctorant> findByNv(boolean nv);
+ List<Doctorant> findByNv(int nv);
  
 }

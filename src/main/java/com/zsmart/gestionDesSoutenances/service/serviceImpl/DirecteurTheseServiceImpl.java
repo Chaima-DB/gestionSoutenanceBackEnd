@@ -95,5 +95,10 @@ public class DirecteurTheseServiceImpl implements DirecteurTheseService {
         return directeurTheseDao.findByProfesseurUserEmail(email);
     }
 
+    @Override
+    public DirecteurThese findByDoctorantUserEmail(String email) {
+        return directeurTheseDao.findByDoctorantUserEmail(email);
+    }
+
 
 }

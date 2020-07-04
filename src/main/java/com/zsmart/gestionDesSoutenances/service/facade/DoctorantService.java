@@ -28,12 +28,14 @@ public interface DoctorantService {
     int update(Doctorant doctorant, Long id);
 
     int updateDoctorat(Doctorant doctorant, Long id);
-    
-     int updateAddRapporteurs(Doctorant doctorant, List<Rapporteur> rapporteurs );
-    
+
+    int updateAddRapporteurs(Doctorant doctorant, List<Rapporteur> rapporteurs);
+
     Doctorant findByUserEmail(String email);
-    
-     List<Doctorant> findByNv(boolean nv);
-     
-     int updateInscription(Doctorant doctorant, Long id);
+
+    List<Doctorant> findByNv(int nv);
+
+    int afterConfirmation(String cin);
+
+    int beforConfirmation(Doctorant doctorant, Long id);
 }

@@ -5,7 +5,6 @@
  */
 package com.zsmart.gestionDesSoutenances.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;

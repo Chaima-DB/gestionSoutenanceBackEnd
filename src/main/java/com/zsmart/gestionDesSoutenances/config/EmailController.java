@@ -7,6 +7,7 @@ package com.zsmart.gestionDesSoutenances.config;
 
 import com.zsmart.gestionDesSoutenances.bean.Doctorant;
 import io.swagger.annotations.Api;
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class EmailController {
     EmailServiceImpl emailServiceImpl;
     
     @PostMapping("/")
-    public void sendEmailToDoctorant(@RequestBody Doctorant doctorant) {
+    public void sendEmailToDoctorant(@RequestBody Doctorant doctorant) throws MessagingException {
         emailServiceImpl.sendEmailToDoctorant(doctorant);
     }
 }

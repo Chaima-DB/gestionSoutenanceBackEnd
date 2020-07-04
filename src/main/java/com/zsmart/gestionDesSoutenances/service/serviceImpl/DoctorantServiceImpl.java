@@ -24,7 +24,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -82,6 +81,7 @@ public class DoctorantServiceImpl implements DoctorantService {
             doctorant.setSpecialite(specialite);
             doctorant.setStructureDeRecherche(structure);
             userService.addRoletouser(doctorant.getUser().getEmail(), "ROLE_USER");
+            doctorant.getUser().setIsEnabled(false);
             doctorantDao.save(doctorant);
             return 1;
         }
@@ -136,16 +136,15 @@ public class DoctorantServiceImpl implements DoctorantService {
     }
 
     @Override
-    public List<Doctorant> findByNv(boolean nv) {
+    public List<Doctorant> findByNv(int nv) {
         return doctorantDao.findByNv(nv);
     }
-
-    @Override
-    public int updateInscription(Doctorant doctorant, Long id) {
+    
+   @Override
+    public int beforConfirmation(Doctorant doctorant, Long id) {
         Optional<Doctorant> founded = doctorantDao.findById(id);
         if (founded != null) {
-            founded.get().setNv(true);
-            founded.get().setDateInscription(new Date());
+            founded.get().setNv(1);
             doctorantDao.save((founded.get()));
             return 1;
         } else {
@@ -153,6 +152,22 @@ public class DoctorantServiceImpl implements DoctorantService {
         }
     }
 
+    @Override
+    public int afterConfirmation(String cin) {
+        Doctorant founded = doctorantDao.findByCin(cin);
+        if (founded != null) {
+            founded.setNv(2);
+            founded.getUser().setIsEnabled(Boolean.TRUE);
+            founded.setDateInscription(new Date());
+            doctorantDao.save(founded);
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+   
+ 
     
     
     

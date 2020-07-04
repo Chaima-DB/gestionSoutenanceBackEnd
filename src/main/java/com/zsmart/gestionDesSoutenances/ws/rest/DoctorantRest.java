@@ -72,12 +72,16 @@ public class DoctorantRest {
         return doctorantService.updateAddRapporteurs(doctorant, doctorant.getRapporteurs());
     }
     @GetMapping("/nv/{nv}")
-    public List<Doctorant> findByNv(@PathVariable boolean nv) {
+    public List<Doctorant> findByNv(@PathVariable int nv) {
         return doctorantService.findByNv(nv);
     }
-    @PutMapping("/updateInscription/id/{id}")
-    public int updateInscription(@RequestBody Doctorant doctorant, @PathVariable Long id) {
-        return doctorantService.updateInscription(doctorant, id);
+    @PutMapping("/updateAfterConfirmation/cin/{cin}")
+    public int afterConfirmation(@PathVariable String cin) {
+        return doctorantService.afterConfirmation(cin);
+    }
+    @PutMapping("/updateBeforConfirmation/id/{id}")
+    public int beforConfirmation(@RequestBody Doctorant doctorant, @PathVariable Long id) {
+        return doctorantService.beforConfirmation(doctorant, id);
     }
     
 

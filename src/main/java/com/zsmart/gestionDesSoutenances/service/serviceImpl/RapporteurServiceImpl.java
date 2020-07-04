@@ -72,7 +72,7 @@ public class RapporteurServiceImpl implements RapporteurService {
         
         rapporteurs.forEach(r -> {
             Rapporteur founded = rapporteurDao.findByProfesseurCinAndDoctorantCin(r.getProfesseur().getCin(), r.getDoctorant().getCin());
-            if(founded != r){
+            if( r != founded ){
             Professeur professeur = professeurService.findByCin(r.getProfesseur().getCin());
             Doctorant doctorant = doctorantService.findByCin(r.getDoctorant().getCin());
             r.setDoctorant(doctorant);
@@ -80,14 +80,6 @@ public class RapporteurServiceImpl implements RapporteurService {
             r.setDateAffectation(new Date());
             rapporteurDao.save(r);
             
-            }else{
-            rapporteurDao.deleteByProfesseurCinAndDoctorantCin(r.getProfesseur().getCin(), r.getDoctorant().getCin());
-            Professeur professeur = professeurService.findByCin(r.getProfesseur().getCin());
-            Doctorant doctorant = doctorantService.findByCin(r.getDoctorant().getCin());
-            r.setDoctorant(doctorant);
-             r.setProfesseur(professeur);
-            r.setDateAffectation(new Date());
-            rapporteurDao.save(r);
             }
         }
         );
