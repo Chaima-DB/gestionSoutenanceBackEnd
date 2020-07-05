@@ -41,6 +41,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<Article> findAll() {
+            
 		return articleDao.findAll();
 	}
 
