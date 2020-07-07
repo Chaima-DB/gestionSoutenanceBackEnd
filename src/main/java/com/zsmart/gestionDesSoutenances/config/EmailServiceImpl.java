@@ -38,7 +38,7 @@ public class EmailServiceImpl {
          MimeMessage message = mailSender.createMimeMessage();
 
         // Set From: header field of the header.
-        message.setFrom("chimox751@gmail.com");
+        message.setFrom("fstg.ced@gmail.com");
 
         // Set To: header field of the header.
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(doctorant.getUser().getEmail()));

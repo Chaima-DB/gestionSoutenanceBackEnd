@@ -51,8 +51,8 @@ public class These implements Serializable {
 	@Column(name = "fichier")
 	private File file;
         
-//        @ManyToOne
-//        private Doctorant doctorant;
+        @ManyToOne
+        private Doctorant doctorant;
 
         
 

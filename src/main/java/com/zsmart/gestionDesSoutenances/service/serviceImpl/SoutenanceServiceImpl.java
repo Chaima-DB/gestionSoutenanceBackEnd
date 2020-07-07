@@ -89,10 +89,7 @@ public class SoutenanceServiceImpl implements SoutenanceService {
     public int update(Soutenance soutenance, Long id) {
         Optional<Soutenance> founded = soutenanceDao.findById(id);
         if (founded != null) {
-            founded.get().setDoctorant(soutenance.getDoctorant());
-            founded.get().setReference(soutenance.getReference());
-            founded.get().setDateSoutenance(soutenance.getDateSoutenance());
-            founded.get().setHeureSoutenance(soutenance.getHeureSoutenance());
+            founded.get().setResultatFinal(soutenance.getResultatFinal());
             soutenanceDao.save((founded.get()));
             return 1;
         }

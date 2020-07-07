@@ -41,6 +41,16 @@ public class TheseServiceImpl implements TheseService {
             return false;
         }
     }
+
+    @Override
+    public List<These> findByDoctorantCin(String cin) {
+        return theseDao.findByDoctorantCin(cin);
+    }
+
+    @Override
+    public List<These> findByDoctorantUserEmail(String email) {
+        return theseDao.findByDoctorantUserEmail(email);
+    }
 	
 
 }

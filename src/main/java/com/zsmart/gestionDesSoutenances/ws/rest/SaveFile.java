@@ -45,7 +45,7 @@ public class SaveFile {
     @Autowired
     DoctorantService doctorantService;
 
-    @PostMapping("/savefile")
+   // @PostMapping("/savefile")
     public ResponseEntity<String> handleFileUploadBac(@RequestParam("file") MultipartFile file) {
         return saveFileService.handleFileUploadBac(file);
     }
@@ -75,11 +75,11 @@ public class SaveFile {
          theseService.save(these);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-     @GetMapping("/")
+  //   @GetMapping("/")
     public List<These> findAll() {
         return theseService.findAll();
     }
-      @GetMapping("/files/{filename:.+}")
+     // @GetMapping("/files/{filename:.+}")
   @ResponseBody
   public ResponseEntity<Resource> getFile(@PathVariable String filename) throws MalformedURLException {
     Resource file =load(filename);

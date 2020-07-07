@@ -91,11 +91,13 @@ public class RapporteurServiceImpl implements RapporteurService {
     @Override
     public int update(Rapporteur rapporteur, Long id) {
         Optional<Rapporteur> founded = rapporteurDao.findById(id);
-        founded.get().setProfesseur(rapporteur.getProfesseur());
-        founded.get().setDoctorant(rapporteur.getDoctorant());
+         if(founded != null){
         founded.get().setAvis(rapporteur.getAvis());
-        rapporteurDao.save(rapporteur);
+        rapporteurDao.save(founded.get());
         return 1;
+        }else{
+        return -1;
+        }
     }
 
     @Override

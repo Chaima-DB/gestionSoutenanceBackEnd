@@ -18,5 +18,9 @@ public interface TheseService {
     List<These> findAll();
 
     boolean save(These these);
+    
+     List<These> findByDoctorantCin(String cin);
+     
+     List<These> findByDoctorantUserEmail(String email);
 
 }
